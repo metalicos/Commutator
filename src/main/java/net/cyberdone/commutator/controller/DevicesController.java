@@ -6,13 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.Map;
 
 @Controller
-public class HomeController {
+public class DevicesController {
 
-    @GetMapping("/")
+    @GetMapping("/devices")
     public String welcome(Map<String, Object> model) {
-       // String message = "Hello World";
-       // model.put("message", message);
+        // String message = "Hello World";
+        // model.put("message", message);
         return "devices";
     }
-
 }
