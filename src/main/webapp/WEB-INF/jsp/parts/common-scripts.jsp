@@ -1,24 +1,31 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<script>
+<script type='text/javascript'>
+    var leftBarShowCounter = 0;
     document.addEventListener("DOMContentLoaded", function (event) {
-
         const showNavbar = (toggleId, navId, bodyId, headerId) => {
             const toggle = document.getElementById(toggleId),
                 nav = document.getElementById(navId),
                 bodypd = document.getElementById(bodyId),
                 headerpd = document.getElementById(headerId)
 
-// Validate that all variables exist
             if (toggle && nav && bodypd && headerpd) {
                 toggle.addEventListener('click', () => {
-// show navbar
+                    leftBarShowCounter = leftBarShowCounter % 2;
+
                     nav.classList.toggle('show')
-// change icon
+
+                    if(leftBarShowCounter === 0) {
+                        nav.classList.add("left-bar-opened");
+                    }else{
+                        nav.classList.remove("left-bar-opened");
+                    }
+                    leftBarShowCounter++;
+
                     toggle.classList.toggle('bx-x')
-// add padding to body
+
                     bodypd.classList.toggle('body-pd')
-// add padding to header
+
                     headerpd.classList.toggle('body-pd')
                 })
             }
@@ -26,7 +33,6 @@
 
         showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
 
-        /*===== LINK ACTIVE =====*/
         const linkColor = document.querySelectorAll('.nav_link')
 
         function colorLink() {
@@ -38,7 +44,6 @@
 
         linkColor.forEach(l => l.addEventListener('click', colorLink))
 
-// Your code to run since DOM is loaded and ready
     });
 </script>
 
@@ -51,3 +56,47 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
         integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
         crossorigin="anonymous"></script>
+
+<script type='text/javascript'>
+
+document.addEventListener("DOMContentLoaded", function() {
+    var filterBtn = document.getElementById('filter-btn');
+    var btnTxt = document.getElementById('btn-txt');
+    var filterAngle = document.getElementById('filter-angle');
+
+
+    $('#filterbar').collapse(false);
+    var count = 0, count2 = 0;
+
+    function changeBtnTxt() {
+        $('#filterbar').collapse(true);
+        count++;
+        if (count % 2 !== 0) {
+            filterAngle.classList.add("fa-angle-right");
+            btnTxt.innerText = "hide filters"
+        } else {
+            filterAngle.classList.remove("fa-angle-right")
+            btnTxt.innerText = "show filters"
+        }
+
+    }
+
+    $('#inner-box').collapse(true);
+    $('#inner-box2').collapse(true);
+    $('#inner-box3').collapse(true);
+
+    var icon = document.getElementById('icon');
+
+    function chnageIcon() {
+        count2++;
+        if (count2 % 2 != 0) {
+            icon.innerText = "";
+            icon.innerHTML = '<span class="far fa-times-circle" style="width:100%"></span>';
+        }
+        else {
+            icon.innerText = "";
+            icon.innerHTML = '<span class="navbar-toggler-icon"></span>';
+        }
+    }
+
+});</script>

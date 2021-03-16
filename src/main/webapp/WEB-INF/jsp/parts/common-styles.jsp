@@ -4,7 +4,7 @@
 <link rel="icon" href="/img/cd.ico">
 <link rel="stylesheet" href='https://use.fontawesome.com/releases/v5.7.2/css/all.css'>
 <link rel="stylesheet" href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css'>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css' integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css"/>
 <link rel="stylesheet" href="/css/main.css">
@@ -23,10 +23,10 @@
         color: #4723D9!important;
     }
     .bg-dark-choco{
-        background-color: #222333 !important;
+        background-color: #202369 !important;/* 222333*/
     }
     .text-dark-choco{
-        color: #222333!important;
+        color: #202369!important;
     }
     .bg-light-white{
         background-color: #F7F6FB!important;
@@ -57,5 +57,9 @@
     }
     .icon-size-6{
         font-size: 60px;
+    }
+    .animate_500ms {
+        -webkit-animation-duration: 0.5s;
+        animation-duration: 0.5s;
     }
 </style>

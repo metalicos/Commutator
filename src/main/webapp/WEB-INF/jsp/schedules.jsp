@@ -18,13 +18,13 @@
 
 <!-- CONTENT -->
 <div class="height-100 p-3">
-    <div class="d-flex justify-content-between m-0 py-2 pt-3 bg-dark-choco text-white px-3">
+    <div class="d-flex justify-content-between m-0 py-2 pt-3 bg-dark-choco text-white px-3 animated fadeInDown animate_500ms">
         <h3>Розклади</h3>
         <a class="align-self-center text-white" href="">
             <i class="bx bx-plus-circle h3"></i>
         </a>
     </div>
-    <div class="row py-3">
+    <div class="row py-3 animated zoomIn animate_500ms">
         <div class="col-lg-4 col-md-6 offset-md-0 offset-sm-1 col-sm-10 offset-sm-1 my-lg-0 my-2 custom-zoom">
             <a class="text-decoration-none" href="">
                 <div class="card bg-dark-choco">
@@ -98,7 +98,7 @@
             </a>
         </div>
     </div>
-    <div class="row py-3">
+    <div class="row py-3 animated zoomIn animate_500ms">
         <div class="col-lg-4 col-md-6 offset-md-0 offset-sm-1 col-sm-10 offset-sm-1 my-lg-0 my-2 custom-zoom">
             <a class="text-decoration-none" href="">
                 <div class="card bg-dark-choco">
@@ -172,7 +172,7 @@
             </a>
         </div>
     </div>
-    <div class="row py-3">
+    <div class="row py-3 animated zoomIn animate_500ms">
         <div class="col-lg-4 col-md-6 offset-md-0 offset-sm-1 col-sm-10 offset-sm-1 my-lg-0 my-2 custom-zoom">
             <a class="text-decoration-none" href="">
                 <div class="card bg-dark-choco">
