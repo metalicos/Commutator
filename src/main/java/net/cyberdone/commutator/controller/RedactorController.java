@@ -17,16 +17,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.SecureRandom;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Slf4j
 @Controller
 @AllArgsConstructor
 @RequestMapping(value = "/redactor")
 public class RedactorController {
 
+    private static final int UID_LENGTH = 9;
     private final DeviceService deviceService;
     private final DeviceChannelService deviceChannelService;
     private final ProductService productService;
-    private char[] letter = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'a', 'B', 'b', 'C', 'c', 'D', 'd', 'E', 'e', 'F', 'f', 'G', 'g', 'H', 'h', 'I', 'i', 'J', 'j', 'K', 'k', 'L', 'l', 'M', 'm', 'N', 'n', 'O', 'o', 'P', 'p', 'Q', 'q', 'R', 'r', 'S', 's', 'T', 't', 'U', 'u', 'V', 'v', 'W', 'w', 'X', 'x', 'Y', 'y', 'Z', 'z', '_', '-', '.', ' '};
 
     @GetMapping
     public String welcome(Model model) {
@@ -38,6 +42,11 @@ public class RedactorController {
     public String getAddDevicePage(Model model) {
         model.addAttribute("statusArray", Status.values());
         model.addAttribute("deviceNames", DeviceName.values());
+        String UID = "";
+        String letter = "0123456789AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz_-.;:?&%@";
+        for (int i = 0; i < UID_LENGTH; i++) {
+            UID += letter.charAt(new SecureRandom().nextInt(letter.length()));
+        }
         return "add-device";
     }
 
@@ -56,5 +65,19 @@ public class RedactorController {
         deviceService.createDevice(device);
         productService.createProduct(product);
         return "redirect:add-device";
+    }
+
+    public static void main(String[] args) {
+        while (true) {
+            String UID = "";
+            String letter = "0123456789AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz_-.;:?&%@";
+            for (int i = 0; i < UID_LENGTH; i++) {
+                UID += letter.charAt(new SecureRandom().nextInt(letter.length()));
+            }
+            UID = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE)
+                    +"-"
+                    +UID;
+            System.out.println(UID);
+        }
     }
 }

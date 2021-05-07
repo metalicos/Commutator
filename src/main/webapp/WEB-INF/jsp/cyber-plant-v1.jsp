@@ -8,184 +8,8 @@
     <title>Commutator | Пристрої</title>
     <%@include file="parts/common-styles.jsp" %>
     <style>
-        .switch {
-            /* margin: 50px auto; */
-            position: relative
-        }
-
-        .switch label {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            display: block
-        }
-
-        .switch input {
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            opacity: 0;
-            z-index: 100;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            cursor: pointer
-        }
-
-        .switch.demo3 {
-            width: 180px;
-            height: 50px
-        }
-
-        .switch.demo3 label {
-            display: block;
-            width: 100%;
-            height: 100%;
-            background: #a5a39d;
-            box-shadow: inset 0 3px 8px 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.5)
-        }
-
-        .switch.demo3 label:after {
-            content: "";
-            position: absolute;
-            z-index: -1;
-            top: -8px;
-            right: -8px;
-            bottom: -8px;
-            left: -8px;
-            border-radius: inherit;
-            background: #ababab;
-            background: -moz-linear-gradient(#f2f2f2, #ababab);
-            background: -ms-linear-gradient(#f2f2f2, #ababab);
-            background: -o-linear-gradient(#f2f2f2, #ababab);
-            background: -webkit-gradient(linear, 0 0, 0 100%, from(#f2f2f2), to(#ababab));
-            background: -webkit-linear-gradient(#f2f2f2, #ababab);
-            background: linear-gradient(#f2f2f2, #ababab);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(0, 0, 0, 0.25)
-        }
-
-        .switch.demo3 label i {
-            display: block;
-            height: 100%;
-            width: 60%;
-            border-radius: inherit;
-            background: silver;
-            position: absolute;
-            z-index: 2;
-            right: 40%;
-            top: 0;
-            background: #b2ac9e;
-            background: -moz-linear-gradient(#f7f2f6, #b2ac9e);
-            background: -ms-linear-gradient(#f7f2f6, #b2ac9e);
-            background: -o-linear-gradient(#f7f2f6, #b2ac9e);
-            background: -webkit-gradient(linear, 0 0, 0 100%, from(#f7f2f6), to(#b2ac9e));
-            background: -webkit-linear-gradient(#f7f2f6, #b2ac9e);
-            background: linear-gradient(#f7f2f6, #b2ac9e);
-            box-shadow: inset 0 1px 0 white, 0 0 8px rgba(0, 0, 0, 0.3), 0 5px 5px rgba(0, 0, 0, 0.2)
-        }
-
-        .switch.demo3 label i:after {
-            content: "";
-            position: absolute;
-            left: 15%;
-            top: 25%;
-            width: 70%;
-            height: 50%;
-            background: #d2cbc3;
-            background: -moz-linear-gradient(#cbc7bc, #d2cbc3);
-            background: -ms-linear-gradient(#cbc7bc, #d2cbc3);
-            background: -o-linear-gradient(#cbc7bc, #d2cbc3);
-            background: -webkit-gradient(linear, 0 0, 0 100%, from(#cbc7bc), to(#d2cbc3));
-            background: -webkit-linear-gradient(#cbc7bc, #d2cbc3);
-            background: linear-gradient(#cbc7bc, #d2cbc3);
-            border-radius: inherit
-        }
-
-        .switch.demo3 input:checked ~ label {
-            background: #9abb82
-        }
-
-        .switch.demo3 input:checked ~ label i {
-            right: -1%
-        }
-        .switch.demo3 label i:before {
-            content: "0";
-            text-transform: uppercase;
-            font-style: normal;
-            font-weight: bold;
-            color: rgba(0, 0, 0, 0.4);
-            text-shadow: 0 1px 0 #bcb8ae, 0 -1px 0 #97958e;
-            font-family: Helvetica, Arial, sans-serif;
-            font-size: 24px;
-            position: absolute;
-            top: 50%;
-            margin-top: -12px;
-            right: -50%
-        }
-        .switch.demo3 input:checked ~ label i:before {
-            content: "1";
-            right: 115%;
-            color: #82a06a;
-            text-shadow: 0 1px 0 #afcb9b, 0 -1px 0 #6b8659
-        }
-        #submit:focus {
-            outline: none;
-            outline-offset: none
-        }
-
-        .button {
-            display: inline-block;
-            padding: 9px 22px;
-            margin: 20px 8px;
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 1.42857143;
-            text-align: center;
-            white-space: nowrap;
-            vertical-align: middle;
-            -ms-touch-action: manipulation;
-            cursor: pointer;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            background-image: none;
-            border: 2px solid transparent;
-            border-radius: 5px;
-            color: #fff;
-            background-color: #8E24AA
-        }
-
-        .button_loader {
-            background-color: transparent;
-            border: 4px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 4px solid #969696;
-            border-bottom: 4px solid #969696;
-            width: 50px;
-            height: 50px;
-            -webkit-animation: spin 0.8s linear infinite;
-            animation: spin 0.8s linear infinite
-        }
-
-        @-webkit-keyframes spin {
-            0% {
-                -webkit-transform: rotate(0deg)
-            }
-
-            99% {
-                -webkit-transform: rotate(360deg)
-            }
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg)
-            }
-
-            99% {
-                transform: rotate(360deg)
-            }
+        .active {
+            background-color: #202369 !important; /* 222333*/
         }
     </style>
 </head>
@@ -201,182 +25,1315 @@
 <!-- CONTENT -->
 <div class="height-100 py-3">
 
-    <div class="d-flex justify-content-between m-0 py-2 pt-3 bg-dark-choco text-white px-3 animated fadeInDown animate_500ms">
+    <div class="d-flex justify-content-between m-0 py-2 pt-3 bg-dark-choco text-white px-3">
         <h3>Багатоканальний контролер поливу рослин з інтернет-керуванням</h3>
-        <%--        <a class="align-self-center text-white" href="">--%>
-        <%--            <i class="bx bx-plus-circle h3"></i>--%>
-        <%--        </a>--%>
     </div>
 
-    <%--
-            <button class="d-flex justify-content-between w-100 m-0 py-1 my-2 pt-2 bg-dark-choco text-danger px-3 btn text-white animated  zoomIn animate_500ms"
-                    type="button" data-toggle="collapse" data-target="#inner-box3" aria-expanded="false"
-                    aria-controls="inner-box">
-                <h3 class="font-weight-bold">Видалити</h3>
-                <!--        <span class="bx bxs-plus-square icon-size-3"></span> --!>
-            </button>
-
-            <div id="inner-box3" class="row py-3 animated zoomIn animate_500ms">
-                <div class="col-lg-1 col-md-2 offset-md-0 offset-sm-0 col-sm-10 offset-sm-1 my-lg-0 my-4 custom-zoom">
-                    <a class="text-decoration-none" href="">
-                        <div class="card bg-dark-choco">
-                            <h5 class="font-weight-bold text-center bg-danger text-white card-title m-2 py-2">
-                                Користувача</h5>
-                            <span class="bx bx-user card-body h1 text-danger icon-size-6 text-center my-0 p-0"></span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-2 col-md-3 offset-md-0 offset-sm-1 col-sm-10 offset-sm-1 my-lg-0 my-4 custom-zoom">
-                    <a class="text-decoration-none" href="">
-                        <div class="card bg-dark-choco">
-                            <h5 class="font-weight-bold text-center bg-danger text-white card-title m-2 py-2">
-                                Користувача</h5>
-                            <span class="bx bx-user card-body h1 text-danger icon-size-6 text-center my-0 p-0"></span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-2 col-md-3 offset-md-0 offset-sm-1 col-sm-10 offset-sm-1 my-lg-0 my-4 custom-zoom">
-                    <a class="text-decoration-none" href="">
-                        <div class="card bg-dark-choco">
-                            <h5 class="font-weight-bold text-center bg-danger text-white card-title m-2 py-2">
-                                Користувача</h5>
-                            <span class="bx bx-user card-body h1 text-danger icon-size-6 text-center my-0 p-0"></span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-2 col-md-3 offset-md-0 offset-sm-1 col-sm-10 offset-sm-1 my-lg-0 my-4 custom-zoom">
-                    <a class="text-decoration-none" href="">
-                        <div class="card bg-dark-choco">
-                            <h5 class="font-weight-bold text-center bg-danger text-white card-title m-2 py-2">
-                                Користувача</h5>
-                            <span class="bx bx-user card-body h1 text-danger icon-size-6 text-center my-0 p-0"></span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-2 col-md-3 offset-md-0 offset-sm-1 col-sm-10 offset-sm-1 my-lg-0 my-4 custom-zoom">
-                    <a class="text-decoration-none" href="">
-                        <div class="card bg-dark-choco">
-                            <h5 class="font-weight-bold text-center bg-danger text-white card-title m-2 py-2">
-                                Користувача</h5>
-                            <span class="bx bx-user card-body h1 text-danger icon-size-6 text-center my-0 p-0"></span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-2 col-md-3 offset-md-0 offset-sm-1 col-sm-10 offset-sm-1 my-lg-0 my-4 custom-zoom">
-                    <a class="text-decoration-none" href="">
-                        <div class="card bg-dark-choco">
-                            <h5 class="font-weight-bold text-center bg-danger text-white card-title m-2 py-2">
-                                Прилад</h5>
-                            <span class="bx bx-devices card-body h1 text-danger icon-size-6 text-center my-0 p-0"></span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-2 col-md-3 offset-md-0 offset-sm-1 col-sm-10 offset-sm-1 my-lg-0 my-4 custom-zoom">
-                    <a class="text-decoration-none" href="">
-                        <div class="card bg-dark-choco">
-                            <h5 class="font-weight-bold text-center bg-danger text-white card-title m-2 py-2">
-                                Сенсор</h5>
-                            <span class="bx bx-devices card-body h1 text-danger icon-size-6 text-center my-0 p-0"></span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        --%>
-
-    <%--
-        bool channelType[4] = {0, 0, 0, 0};                                         // Тип каналу (Реле / Диммер)
-      bool channelLogic[4] = {0, 0, 0, 0};                                        // Логіка каналу (Логічний 0 або лог. 1)
-      double analogSensorData[4] = {0.0, 0.0, 0.0, 0.0};                          // Значення сенсорів у реальному часі
-      double maintainValue[4]  = {30.0, 30.0, 30.0, 30.0};                        // Підтримуване значення сенсорів регуляторами
-      uint16_t channelValue[4] = {0, 0, 0, 0};                                    // Рівень відкритості каналу (для димера 0-65535) (для реле 1 або 0)
-      uint8_t channelControlMode[4] = {0, 0, 0, 0};                               // Режим контролю (Ручний, Регулятор ...)
-
-      bool pidDirection[4] = {0, 0, 0, 0};                                        // Напрямок регулювання пропорційно-інтегрально-диференціального регулятора
-      double pidKp[4] = {0.1, 0.1, 0.1, 0.1};                                     // Пропорційна складова
-      double pidKi[4] = {0.05, 0.05, 0.05, 0.05};                                 // Інтегральна складова
-      double pidKd[4] = {0.01, 0.01, 0.01, 0.01};                                 // Диференціальна складова
-      uint32_t pidDt[4] = {1000, 1000, 1000, 1000};                               // Час дискретизації
-
-      bool relayDirection[4] = {0, 0, 0, 0};                                      // Напрямок регулювання релейного регулятора на гістерезисі
-      double relayHysteresis[4] = {5.0, 5.0, 5.0, 5.0};                           // значення гістерезису
-      double relayK[4] = {0.5, 0.5, 0.5, 0.5};                                    // коефіцієнт інерційності системи
-      uint32_t relayDt[4] = {500, 500, 500, 500};                                 // час ітерації
-
-
-      bool sound = false;                                                         // Режим звуку
-      bool waterCheck = false;                                                    // Режим перевірки води
-      bool screensaver = false;                                                   // Заставка
-      uint16_t screensaverType = 0;                                               // Тип заставки
-      uint32_t screensaverAfter = 0;                                              // Перейти в заставку після мс
-      bool screenLight = true;                                                    // Підсвітка екрану
-
-      uint8_t dateSecond;                                                         // Час секунда
-      uint8_t dateMinute;                                                         // Час хвилина
-      uint8_t dateHour;                                                           // Час година
-      uint8_t dateDay;                                                            // Час день
-      uint8_t dateMonth;                                                          // Час місяць
-      uint16_t dateYear;                                                          // Час рік
-
-      char wifiSSID[20] = {'\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0'}; // Назва точки дуступу
-      char wifiPASS[20] = {'\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0', '\0'}; // Пароль до точки доступу
-
-      // СИСТЕМНІ НАЛАШТУВАННЯ
-      uint32_t sendDataToServerEvery = 1000;                                      // Надсилати дані на сервер кожних мс
-      uint16_t checkSensorEvery = 1000;                                           // Перевіряти сенсори кожних мс
-      bool turnOff = false;                                                       // Екстренне вимикання пристрою
-      uint16_t restartCounter = 0;                                                // Лічильник перезавантажень контролера
-      uint16_t workedTimeInSeconds = 0;                                           // Лічильник роботи контролера в секундах
-      uint32_t workedTimeInHours = 0;                                             // Лічильник роботи контролера в годинах
-      const char uId[20] = UID;                                                   // Унікальний номер пристрою Cyber Done
-    --%>
 
     <div class="my-2">
 
-        <div class="d-lg-flex d-md-block justify-content-sm-center justify-content-md-start align-content-center">
-
-
-            <div class="card bg-light my-2 col-12 col-lg-5 col-md-5 col-sm-12">
-                <div class="card-body">
-                    <h1 class="h4">Тип каналу:</h1>
-                    <div class="card-group">
-
-
-                        <div class="card-body">
-                            <h1 class="h5  justify-content-between">Канал 1</h1>
-                            <div class="switch demo3">
-                                <input id="ch-0-type" type="checkbox" onchange="
-                               // if($('#ch-0-type').getAttribute('checked') )
-                                location.href='/cyberplant/v1/channel/type?number=0&value=0'
-
-
-"> <label><i></i></label>
-                            </div>
-                            <input id="submit" class="button" type="submit" value="CLICK ME" />
-                        </div>
-
-                        <div class="card-body">
-                            <h1 class="h5  justify-content-between">Канал 2</h1>
-                            <div class="switch demo3"><input type="checkbox"> <label><i></i></label></div>
-                        </div>
-
-                        <div class="card-body">
-                            <h1 class="h5  justify-content-between">Канал 3</h1>
-                            <div class="switch demo3"><input type="checkbox"> <label><i></i></label></div>
-                        </div>
-
-                        <div class="card-body">
-                            <h1 class="h5  justify-content-between">Канал 4</h1>
-                            <div class="switch demo3"><input type="checkbox"> <label><i></i></label></div>
-                        </div>
-
-                    </div>
+        <div class="row">
+            <%-- Список вкладок --%>
+            <div class="col-2 pt-2">
+                <div class="list-group" id="list-tab" role="tablist">
+                    <a class="list-group-item list-group-item-action active" id="list-web-control" data-toggle="list"
+                       href="#web-control" role="tab" aria-controls="settings">Веб керування</a>
+                    <a class="list-group-item list-group-item-action" id="list-sett-ch1" data-toggle="list"
+                       href="#sett-ch1" role="tab" aria-controls="home">Канал 1</a>
+                    <a class="list-group-item list-group-item-action" id="list-sett-ch2" data-toggle="list"
+                       href="#sett-ch2" role="tab" aria-controls="profile">Канал 2</a>
+                    <a class="list-group-item list-group-item-action" id="list-sett-ch3" data-toggle="list"
+                       href="#sett-ch3" role="tab" aria-controls="messages">Канал 3</a>
+                    <a class="list-group-item list-group-item-action" id="list-sett-ch4" data-toggle="list"
+                       href="#sett-ch4" role="tab" aria-controls="settings">Канал 4</a>
+                    <a class="list-group-item list-group-item-action" id="list-sett-general" data-toggle="list"
+                       href="#sett-general" role="tab" aria-controls="settings">Загальні</a>
                 </div>
             </div>
 
+            <%-- Вкладки і їх реалізація --%>
+            <div class="col-10">
+                <div class="tab-content" id="nav-tabContent">
+                    <%-- Веб керування --%>
+                    <div class="tab-pane show active" id="web-control" role="tabpanel"
+                         aria-labelledby="list-web-control">
+                        <div class="card bg-light my-2 col-12">
+                            <div class="card-body text-dark">
+
+
+                                <!-- Заголовок -->
+                                <div class="bg-dark-choco text-white p-2 mb-4">
+                                    <h1 class="col-12 h4 text-uppercase text-center font-weight-bold  py-2">Веб
+                                        керування</h1>
+
+                                </div>
+
+                                <div class="d-flex">
+                                    <div class="col-5"></div>
+                                    <div class="my-2 col-2">
+                                        <a class="btn btn-secondary col-10"
+                                           href="/cyberplant/webcontrol?command=3&uid=${device.uid}"><i
+                                                class="fa fa-arrow-up"></i></a>
+                                    </div>
+                                    <div class="col-5"></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="col-3"></div>
+                                    <div class="my-2 col-2">
+                                        <a class="btn btn-secondary col-10"
+                                           href="/cyberplant/webcontrol?command=1&uid=${device.uid}"><i
+                                                class="fa fa-arrow-left"></i></a>
+                                    </div>
+                                    <div class="my-2 col-2">
+                                        <a class="btn btn-dark-choco col-10"
+                                           href="/cyberplant/webcontrol?command=0&uid=${device.uid}">Вибрати</a>
+                                    </div>
+                                    <div class="my-2 col-2">
+                                        <a class="btn btn-secondary col-10"
+                                           href="/cyberplant/webcontrol?command=2&uid=${device.uid}"><i
+                                                class="fa fa-arrow-right"></i></a>
+                                    </div>
+                                    <div class="col-3"></div>
+                                </div>
+
+                                <div class="d-flex">
+                                    <div class="col-5"></div>
+                                    <div class="my-2 col-2">
+                                        <a class="btn btn-secondary col-10"
+                                           href="/cyberplant/webcontrol?command=4&uid=${device.uid}"><i
+                                                class="fa fa-arrow-down"></i></a>
+                                    </div>
+                                    <div class="col-5"></div>
+                                </div>
+
+                                <div class="d-flex">
+                                    <div class="col-3"></div>
+                                    <div class="my-2 col-2">
+                                        <a class="btn btn-danger col-10"
+                                           href="">Стерти</a>
+                                    </div>
+                                    <div class="my-2 col-2">
+                                        <a class="btn btn-success col-10"
+                                           href="">Зберегти</a>
+                                    </div>
+                                    <div class="my-2 col-2">
+                                        <a class="btn btn-dark col-10"
+                                           href="/cyberplant/webcontrol?command=5&uid=${device.uid}">Назад</a>
+                                    </div>
+                                    <div class="col-3"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <%-- Канал 1 --%>
+                    <div class="tab-pane" id="sett-ch1" role="tabpanel"
+                         aria-labelledby="list-sett-ch1">
+                        <form action="">
+                            <div class="card bg-light my-2 col-12">
+                                <div class="card-body text-dark">
+
+                                    <!-- Заголовок -->
+                                    <div class="bg-dark-choco text-white p-2 mb-4">
+                                        <h1 class="col-12 h4 text-uppercase text-center font-weight-bold  py-2">Канал
+                                            1</h1>
+                                        <div class="d-flex py-2">
+                                            <div class="col-4">
+                                                <h1 class="h5 text-uppercase">Назва налаштування</h1>
+                                            </div>
+                                            <div class="col-4">
+                                                <h1 class="h5 text-uppercase">Панель управління</h1>
+                                            </div>
+                                            <div class="col-4">
+                                                <h1 class="h5 text-uppercase">Станом на даний момент</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Тип Каналу -->
+                                    <div class="d-flex my-2">
+                                        <div class="col-4">
+                                            <h1 class="h5">Тип каналу</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="d-flex">
+                                                <input type="checkbox" name="type">
+                                                <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                                   class="btn btn-outline-success col-6">Реле</a>
+                                                <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                                   class="btn btn-outline-danger col-6">Диммер</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="h5">Диммер</h1>
+                                        </div>
+                                    </div>
+
+                                    <!-- Логіка Каналу -->
+                                    <div class="d-flex my-2">
+                                        <div class="col-4">
+                                            <h1 class="h5">Логіка каналу</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="d-flex">
+                                                <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                                   class="h5 btn btn-outline-success col-6">Активний 0</a>
+                                                <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                                   class="h5 btn btn-outline-danger mr-3 col-6">Активна 1</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="h5">Активний 0</h1>
+                                        </div>
+                                    </div>
+
+                                    <!-- Підтримуване значення каналом -->
+                                    <div class="d-flex">
+                                        <div class="col-4">
+                                            <h1 class="h5">Підтримуване значення</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <form action="/cyberplant/v1/channel/" method="get">
+                                                <input class="form-control" type="number" min="0.0" max="100.0"
+                                                       step="0.1"
+                                                       value="0">
+                                            </form>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="h5">0</h1>
+                                        </div>
+                                    </div>
+
+                                    <!-- Рівень відкритості каналу -->
+                                    <div class="d-flex">
+                                        <div class="col-4">
+                                            <h1 class="h5">Рівень відкритості каналу</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <form action="/cyberplant/v1/channel/" method="get">
+                                                <input class="form-control" type="number" min="0" max="65535" step="1"
+                                                       value="0">
+                                            </form>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="h5">0</h1>
+                                        </div>
+                                    </div>
+
+                                    <!-- Режим контролю -->
+                                    <div class="d-flex my-2">
+                                        <div class="col-4">
+                                            <h1 class="h5">Режим контролю</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="d-flex">
+                                                <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                                   class="h5 btn btn-outline-success col-4">Ручний</a>
+                                                <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                                   class="h5 btn btn-outline-warning col-4">Автомат</a>
+                                                <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                                   class="h5 btn btn-outline-danger col-4">WiFi</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="h5">WiFi</h1>
+                                        </div>
+                                    </div>
+
+                                    <!-- PID Напрям регулювання -->
+                                    <div class="d-flex my-2">
+                                        <div class="col-4">
+                                            <h1 class="h5">PID Напрям регулювання вхідної величини</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="d-flex">
+                                                <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                                   class="btn btn-outline-success col-6">По зростанню</a>
+                                                <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                                   class="btn btn-outline-danger col-6">По спаданню</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="h5">По зростанню</h1>
+                                        </div>
+                                    </div>
+
+                                    <!-- PID пропорційний коефіцієнт -->
+                                    <div class="d-flex">
+                                        <div class="col-4">
+                                            <h1 class="h5">PID пропорційний коефіцієнт (Kp)</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <form action="/cyberplant/v1/channel/" method="get">
+                                                <input class="form-control" type="number" min="-100" max="100"
+                                                       step="0.01"
+                                                       value="0">
+                                            </form>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="h5">0.05</h1>
+                                        </div>
+                                    </div>
+
+                                    <!-- PID інтегральний коефіцієнт -->
+                                    <div class="d-flex">
+                                        <div class="col-4">
+                                            <h1 class="h5">PID інтегральний коефіцієнт (Ki)</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <form action="/cyberplant/v1/channel/" method="get">
+                                                <input class="form-control" type="number" min="-100" max="100"
+                                                       step="0.01"
+                                                       value="0">
+                                            </form>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="h5">0.02</h1>
+                                        </div>
+                                    </div>
+
+                                    <!-- PID диференціальний коефіцієнт -->
+                                    <div class="d-flex">
+                                        <div class="col-4">
+                                            <h1 class="h5">PID диференціальний коефіцієнт (Kd)</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <form action="/cyberplant/v1/channel/" method="get">
+                                                <input class="form-control" type="number" min="-100" max="100"
+                                                       step="0.01"
+                                                       value="0">
+                                            </form>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="h5">0.2</h1>
+                                        </div>
+                                    </div>
+
+                                    <!-- PID час ітерації (dT) -->
+                                    <div class="d-flex">
+                                        <div class="col-4">
+                                            <h1 class="h5">PID час ітерації (dT)</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <form action="/cyberplant/v1/channel/" method="get">
+                                                <input class="form-control" type="number" min="0" max="4294967295"
+                                                       step="1"
+                                                       value="0">
+                                            </form>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="h5">0.05</h1>
+                                        </div>
+                                    </div>
+
+                                    <!-- Напрям регулювання релейного регулятора-->
+                                    <div class="d-flex my-2">
+                                        <div class="col-4">
+                                            <h1 class="h5">Напрям регулювання релейного регулятора</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="d-flex">
+                                                <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                                   class="btn btn-outline-success col-6">По зростанню</a>
+                                                <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                                   class="btn btn-outline-danger col-6">По спаданню</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="h5">По зростанню</h1>
+                                        </div>
+                                    </div>
+
+                                    <!-- Гістерезис релейного регулятора -->
+                                    <div class="d-flex">
+                                        <div class="col-4">
+                                            <h1 class="h5">Гістерезис релейного регулятора</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <form action="/cyberplant/v1/channel/" method="get">
+                                                <input class="form-control" type="number" min="-100" max="100"
+                                                       step="0.01"
+                                                       value="0">
+                                            </form>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="h5">0.05</h1>
+                                        </div>
+                                    </div>
+
+                                    <!-- Коефіцієнт інертності системит -->
+                                    <div class="d-flex">
+                                        <div class="col-4">
+                                            <h1 class="h5">Коефіцієнт інертності системит</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <form action="/cyberplant/v1/channel/" method="get">
+                                                <input class="form-control" type="number" min="-100" max="100"
+                                                       step="0.01"
+                                                       value="0">
+                                            </form>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="h5">0.02</h1>
+                                        </div>
+                                    </div>
+
+                                    <!-- Час ітерації -->
+                                    <div class="d-flex">
+                                        <div class="col-4">
+                                            <h1 class="h5">Час ітерації</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <form action="/cyberplant/v1/channel/" method="get">
+                                                <input class="form-control" type="number" min="0" max="4294967295"
+                                                       step="1"
+                                                       value="0">
+                                            </form>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="h5">0.05</h1>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <%--animated  zoomIn animate_100ms--%>
+                    <%-- Канал 2 --%>
+                    <div class="tab-pane" id="sett-ch2" role="tabpanel"
+                         aria-labelledby="list-sett-ch2">
+                        <div class="card bg-light my-2 col-12">
+                            <div class="card-body text-dark">
+
+                                <!-- Заголовок -->
+                                <div class="bg-dark-choco text-white p-2 mb-4">
+                                    <h1 class="col-12 h4 text-uppercase text-center font-weight-bold  py-2">Канал 2</h1>
+                                    <div class="d-flex py-2">
+                                        <div class="col-4">
+                                            <h1 class="h5 text-uppercase">Назва налаштування</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="h5 text-uppercase">Панель управління</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="h5 text-uppercase">Станом на даний момент</h1>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Тип Каналу -->
+                                <div class="d-flex my-2">
+                                    <div class="col-4">
+                                        <h1 class="h5">Тип каналу</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="d-flex">
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                               class="btn btn-outline-success col-6">Реле</a>
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                               class="btn btn-outline-danger col-6">Диммер</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">Диммер</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Логіка Каналу -->
+                                <div class="d-flex my-2">
+                                    <div class="col-4">
+                                        <h1 class="h5">Логіка каналу</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="d-flex">
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                               class="h5 btn btn-outline-success col-6">Активний 0</a>
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                               class="h5 btn btn-outline-danger mr-3 col-6">Активна 1</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">Активний 0</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Підтримуване значення каналом -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">Підтримуване значення</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="0.0" max="100.0" step="0.1"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Рівень відкритості каналу -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">Рівень відкритості каналу</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="0" max="65535" step="1"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Режим контролю -->
+                                <div class="d-flex my-2">
+                                    <div class="col-4">
+                                        <h1 class="h5">Режим контролю</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="d-flex">
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                               class="h5 btn btn-outline-success col-4">Ручний</a>
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                               class="h5 btn btn-outline-warning col-4">Автомат</a>
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                               class="h5 btn btn-outline-danger col-4">WiFi</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">WiFi</h1>
+                                    </div>
+                                </div>
+
+                                <!-- PID Напрям регулювання -->
+                                <div class="d-flex my-2">
+                                    <div class="col-4">
+                                        <h1 class="h5">PID Напрям регулювання вхідної величини</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="d-flex">
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                               class="btn btn-outline-success col-6">По зростанню</a>
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                               class="btn btn-outline-danger col-6">По спаданню</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">По зростанню</h1>
+                                    </div>
+                                </div>
+
+                                <!-- PID пропорційний коефіцієнт -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">PID пропорційний коефіцієнт (Kp)</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="-100" max="100" step="0.01"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0.05</h1>
+                                    </div>
+                                </div>
+
+                                <!-- PID інтегральний коефіцієнт -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">PID інтегральний коефіцієнт (Ki)</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="-100" max="100" step="0.01"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0.02</h1>
+                                    </div>
+                                </div>
+
+                                <!-- PID диференціальний коефіцієнт -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">PID диференціальний коефіцієнт (Kd)</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="-100" max="100" step="0.01"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0.2</h1>
+                                    </div>
+                                </div>
+
+                                <!-- PID час ітерації (dT) -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">PID час ітерації (dT)</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="0" max="4294967295" step="1"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0.05</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Напрям регулювання релейного регулятора-->
+                                <div class="d-flex my-2">
+                                    <div class="col-4">
+                                        <h1 class="h5">Напрям регулювання релейного регулятора</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="d-flex">
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                               class="btn btn-outline-success col-6">По зростанню</a>
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                               class="btn btn-outline-danger col-6">По спаданню</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">По зростанню</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Гістерезис релейного регулятора -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">Гістерезис релейного регулятора</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="-100" max="100" step="0.01"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0.05</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Коефіцієнт інертності системит -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">Коефіцієнт інертності системит</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="-100" max="100" step="0.01"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0.02</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Час ітерації -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">Час ітерації</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="0" max="4294967295" step="1"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0.05</h1>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <%-- Канал 3 --%>
+                    <div class="tab-pane" id="sett-ch3" role="tabpanel"
+                         aria-labelledby="list-sett-ch3">
+                        <div class="card bg-light my-2 col-12">
+                            <div class="card-body text-dark">
+
+                                <!-- Заголовок -->
+                                <div class="bg-dark-choco text-white p-2 mb-4">
+                                    <h1 class="col-12 h4 text-uppercase text-center font-weight-bold  py-2">Канал 3</h1>
+                                    <div class="d-flex py-2">
+                                        <div class="col-4">
+                                            <h1 class="h5 text-uppercase">Назва налаштування</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="h5 text-uppercase">Панель управління</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="h5 text-uppercase">Станом на даний момент</h1>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Тип Каналу -->
+                                <div class="d-flex my-2">
+                                    <div class="col-4">
+                                        <h1 class="h5">Тип каналу</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="d-flex">
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                               class="btn btn-outline-success col-6">Реле</a>
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                               class="btn btn-outline-danger col-6">Диммер</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">Диммер</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Логіка Каналу -->
+                                <div class="d-flex my-2">
+                                    <div class="col-4">
+                                        <h1 class="h5">Логіка каналу</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="d-flex">
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                               class="h5 btn btn-outline-success col-6">Активний 0</a>
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                               class="h5 btn btn-outline-danger mr-3 col-6">Активна 1</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">Активний 0</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Підтримуване значення каналом -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">Підтримуване значення</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="0.0" max="100.0" step="0.1"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Рівень відкритості каналу -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">Рівень відкритості каналу</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="0" max="65535" step="1"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Режим контролю -->
+                                <div class="d-flex my-2">
+                                    <div class="col-4">
+                                        <h1 class="h5">Режим контролю</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="d-flex">
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                               class="h5 btn btn-outline-success col-4">Ручний</a>
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                               class="h5 btn btn-outline-warning col-4">Автомат</a>
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                               class="h5 btn btn-outline-danger col-4">WiFi</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">WiFi</h1>
+                                    </div>
+                                </div>
+
+                                <!-- PID Напрям регулювання -->
+                                <div class="d-flex my-2">
+                                    <div class="col-4">
+                                        <h1 class="h5">PID Напрям регулювання вхідної величини</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="d-flex">
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                               class="btn btn-outline-success col-6">По зростанню</a>
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                               class="btn btn-outline-danger col-6">По спаданню</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">По зростанню</h1>
+                                    </div>
+                                </div>
+
+                                <!-- PID пропорційний коефіцієнт -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">PID пропорційний коефіцієнт (Kp)</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="-100" max="100" step="0.01"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0.05</h1>
+                                    </div>
+                                </div>
+
+                                <!-- PID інтегральний коефіцієнт -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">PID інтегральний коефіцієнт (Ki)</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="-100" max="100" step="0.01"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0.02</h1>
+                                    </div>
+                                </div>
+
+                                <!-- PID диференціальний коефіцієнт -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">PID диференціальний коефіцієнт (Kd)</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="-100" max="100" step="0.01"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0.2</h1>
+                                    </div>
+                                </div>
+
+                                <!-- PID час ітерації (dT) -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">PID час ітерації (dT)</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="0" max="4294967295" step="1"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0.05</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Напрям регулювання релейного регулятора-->
+                                <div class="d-flex my-2">
+                                    <div class="col-4">
+                                        <h1 class="h5">Напрям регулювання релейного регулятора</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="d-flex">
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                               class="btn btn-outline-success col-6">По зростанню</a>
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                               class="btn btn-outline-danger col-6">По спаданню</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">По зростанню</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Гістерезис релейного регулятора -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">Гістерезис релейного регулятора</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="-100" max="100" step="0.01"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0.05</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Коефіцієнт інертності системит -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">Коефіцієнт інертності системит</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="-100" max="100" step="0.01"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0.02</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Час ітерації -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">Час ітерації</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="0" max="4294967295" step="1"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0.05</h1>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <%-- Канал 4 --%>
+                    <div class="tab-pane" id="sett-ch4" role="tabpanel"
+                         aria-labelledby="list-sett-ch4">
+                        <div class="card bg-light my-2 col-12">
+                            <div class="card-body text-dark">
+
+                                <!-- Заголовок -->
+                                <div class="bg-dark-choco text-white p-2 mb-4">
+                                    <h1 class="col-12 h4 text-uppercase text-center font-weight-bold  py-2">Канал 4</h1>
+                                    <div class="d-flex py-2">
+                                        <div class="col-4">
+                                            <h1 class="h5 text-uppercase">Назва налаштування</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="h5 text-uppercase">Панель управління</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="h5 text-uppercase">Станом на даний момент</h1>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Тип Каналу -->
+                                <div class="d-flex my-2">
+                                    <div class="col-4">
+                                        <h1 class="h5">Тип каналу</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="d-flex">
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                               class="btn btn-outline-success col-6">Реле</a>
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                               class="btn btn-outline-danger col-6">Диммер</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">Диммер</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Логіка Каналу -->
+                                <div class="d-flex my-2">
+                                    <div class="col-4">
+                                        <h1 class="h5">Логіка каналу</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="d-flex">
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                               class="h5 btn btn-outline-success col-6">Активний 0</a>
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                               class="h5 btn btn-outline-danger mr-3 col-6">Активна 1</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">Активний 0</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Підтримуване значення каналом -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">Підтримуване значення</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="0.0" max="100.0" step="0.1"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Рівень відкритості каналу -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">Рівень відкритості каналу</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="0" max="65535" step="1"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Режим контролю -->
+                                <div class="d-flex my-2">
+                                    <div class="col-4">
+                                        <h1 class="h5">Режим контролю</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="d-flex">
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                               class="h5 btn btn-outline-success col-4">Ручний</a>
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                               class="h5 btn btn-outline-warning col-4">Автомат</a>
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                               class="h5 btn btn-outline-danger col-4">WiFi</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">WiFi</h1>
+                                    </div>
+                                </div>
+
+                                <!-- PID Напрям регулювання -->
+                                <div class="d-flex my-2">
+                                    <div class="col-4">
+                                        <h1 class="h5">PID Напрям регулювання вхідної величини</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="d-flex">
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                               class="btn btn-outline-success col-6">По зростанню</a>
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                               class="btn btn-outline-danger col-6">По спаданню</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">По зростанню</h1>
+                                    </div>
+                                </div>
+
+                                <!-- PID пропорційний коефіцієнт -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">PID пропорційний коефіцієнт (Kp)</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="-100" max="100" step="0.01"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0.05</h1>
+                                    </div>
+                                </div>
+
+                                <!-- PID інтегральний коефіцієнт -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">PID інтегральний коефіцієнт (Ki)</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="-100" max="100" step="0.01"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0.02</h1>
+                                    </div>
+                                </div>
+
+                                <!-- PID диференціальний коефіцієнт -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">PID диференціальний коефіцієнт (Kd)</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="-100" max="100" step="0.01"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0.2</h1>
+                                    </div>
+                                </div>
+
+                                <!-- PID час ітерації (dT) -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">PID час ітерації (dT)</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="0" max="4294967295" step="1"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0.05</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Напрям регулювання релейного регулятора-->
+                                <div class="d-flex my-2">
+                                    <div class="col-4">
+                                        <h1 class="h5">Напрям регулювання релейного регулятора</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="d-flex">
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                               class="btn btn-outline-success col-6">По зростанню</a>
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                               class="btn btn-outline-danger col-6">По спаданню</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">По зростанню</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Гістерезис релейного регулятора -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">Гістерезис релейного регулятора</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="-100" max="100" step="0.01"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0.05</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Коефіцієнт інертності системит -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">Коефіцієнт інертності системит</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="-100" max="100" step="0.01"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0.02</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Час ітерації -->
+                                <div class="d-flex">
+                                    <div class="col-4">
+                                        <h1 class="h5">Час ітерації</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/" method="get">
+                                            <input class="form-control" type="number" min="0" max="4294967295" step="1"
+                                                   value="0">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">0.05</h1>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <%-- Загальні налаштування --%>
+                    <div class="tab-pane" id="sett-general" role="tabpanel"
+                         aria-labelledby="list-sett-general">
+                        <div class="card bg-light my-2 col-12">
+                            <div class="card-body text-dark">
+
+                                <!-- Заголовок -->
+                                <div class="bg-dark-choco text-white p-2 mb-4">
+                                    <h1 class="col-12 h4 text-uppercase text-center font-weight-bold  py-2">Загальні
+                                        налаштування</h1>
+                                    <div class="d-flex py-2">
+                                        <div class="col-4">
+                                            <h1 class="h5 text-uppercase">Назва налаштування</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="h5 text-uppercase">Панель управління</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1 class="h5 text-uppercase">Станом на даний момент</h1>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Звук -->
+                                <div class="d-flex my-2">
+                                    <div class="col-4">
+                                        <h1 class="h5">Звук приладу</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="d-flex">
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                               class="btn btn-outline-success col-6">Ввімкнути</a>
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                               class="btn btn-outline-danger col-6">Вимкнути</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">Увімкнений</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Перевірка наявності води у резервуарі -->
+                                <div class="d-flex my-2">
+                                    <div class="col-4">
+                                        <h1 class="h5">Перевірка наявності води у резервуарі</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="d-flex">
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                               class="btn btn-outline-success col-6">Ввімкнути</a>
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                               class="btn btn-outline-danger col-6">Вимкнути</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">Увімкнений</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Заставка -->
+                                <div class="d-flex my-2">
+                                    <div class="col-4">
+                                        <h1 class="h5">Заставка при неактивності</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="d-flex">
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                               class="btn btn-outline-success col-6">Ввімкнути</a>
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                               class="btn btn-outline-danger col-6">Вимкнути</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">Увімкнений</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Вибір заставки -->
+                                <div class="d-flex my-2">
+                                    <div class="col-4">
+                                        <h1 class="h5">Вибір заставки</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/type" method="get">
+                                            <div class="d-flex">
+
+                                                <select class="form-control col-9">
+                                                    <option value="0">Інформація про канали</option>
+                                                    <option value="1">Інформація сенсори</option>
+                                                    <option value="2">Інформація про стан з'єднання WiFi</option>
+                                                    <option value="3">Час та дата</option>
+                                                </select>
+                                                <input class="col-3 btn btn-outline-dark" type="submit" value="Змінити">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">Інформація про канали</h1>
+                                    </div>
+                                </div>
+
+                                <!-- Перейти в заставку після мс -->
+                                <div class="d-flex my-2">
+                                    <div class="col-4">
+                                        <h1 class="h5">Перейти в заставку після мс</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <form action="/cyberplant/v1/channel/type" method="get">
+                                            <input type="number" name="value" min="0" max="4000000000">
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">10000</h1>
+                                    </div>
+                                </div>
+
+
+                                <!-- Підсвітка екрану -->
+                                <div class="d-flex my-2">
+                                    <div class="col-4">
+                                        <h1 class="h5">Підсвітка екрану</h1>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="d-flex">
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=0"
+                                               class="btn btn-outline-success col-6">Ввімкнути</a>
+                                            <a href="/cyberplant/v1/channel/type?number=0&value=1"
+                                               class="btn btn-outline-danger col-6">Вимкнути</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h1 class="h5">Увімкнений</h1>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
         </div>
     </div>
 
@@ -384,34 +1341,6 @@
     <%@include file="parts/footer.jsp" %>
 
 </div>
-<%--<script>--%>
-<%--    $(document).ready(function() {--%>
-
-<%--        $('.updateButton').on('click', function() {--%>
-
-<%--            var member_id = $(this).attr('member_id');--%>
-
-<%--            var name = $('#nameInput'+member_id).val();--%>
-<%--            var email = $('#emailInput'+member_id).val();--%>
-
-<%--            req = $.ajax({--%>
-<%--                url : '/update',--%>
-<%--                type : 'POST',--%>
-<%--                data : { name : name, email : email, id : member_id }--%>
-<%--            });--%>
-
-<%--            req.done(function(data) {--%>
-
-<%--                $('#memberSection'+member_id).fadeOut(1000).fadeIn(1000);--%>
-<%--                $('#memberNumber'+member_id).text(data.member_num);--%>
-
-<%--            });--%>
-
-
-<%--        });--%>
-
-<%--    });--%>
-<%--</script>--%>
 
 <!-- SCRIPTS -->
 <%@include file="parts/common-scripts.jsp" %>

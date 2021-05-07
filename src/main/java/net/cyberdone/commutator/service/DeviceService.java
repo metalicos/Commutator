@@ -2,8 +2,10 @@ package net.cyberdone.commutator.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.cyberdone.commutator.model.dto.cyberplant.CyberPlantDto;
 import net.cyberdone.commutator.model.entity.Device;
 import net.cyberdone.commutator.model.entity.DeviceChannel;
+import net.cyberdone.commutator.model.entity.DeviceData;
 import net.cyberdone.commutator.model.entity.DeviceSettings;
 import net.cyberdone.commutator.model.repository.DeviceChannelRepository;
 import net.cyberdone.commutator.model.repository.DeviceDataRepository;
@@ -14,14 +16,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class DeviceService {
 
     private final DeviceRepository deviceRepository;
@@ -42,7 +42,6 @@ public class DeviceService {
                 .orElseThrow(EntityNotFoundException::new);
     }
 
-    @Transactional
     public Device createDevice(Device newDevice) {
         log.info("creating Device {}", newDevice);
         if (!deviceRepository.existsDeviceByUID(newDevice.getUID())) {
@@ -62,11 +61,74 @@ public class DeviceService {
         throw new EntityExistsException();
     }
 
+
     public Device updateDevice(Device device) {
         log.info("updating Device in database with: {}", device);
         return deviceRepository.save(device);
     }
 
+    public Device updateDevice(CyberPlantDto cpd) {
+        log.info("updating Device in database with: {}", cpd);
+        Device device = deviceRepository.findDeviceByUID(cpd.getUId())
+                .orElseThrow(EntityNotFoundException::new);
+        List<DeviceData> dd = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            DeviceData deviceData = new DeviceData();
+            deviceData.setDevice(device);
+            deviceData.setName("sensor_"+i);
+            deviceData.setValue(cpd.getAnalogSensorData()[i]);
+            dd.add(deviceDataRepository.save(deviceData));
+        }
+        List<DeviceChannel> chs = device.getChannels();
+        for (int i = 0; i < 4; i++) {
+            DeviceChannel ch = chs.get(i);
+            ch.setChannelType(cpd.getChannelType()[i]);
+            ch.setChannelLogic(cpd.getChannelLogic()[i]);
+            ch.setAnalogSensorData(cpd.getAnalogSensorData()[i]);
+            ch.setMaintainValue(cpd.getMaintainValue()[i]);
+            ch.setChannelOpenValue(cpd.getChannelValue()[i]);
+            ch.setChannelControlMode(cpd.getChannelControlMode()[i]);
+            ch.setPidDirection(cpd.getPidDirection()[i]);
+            ch.setPidKp(cpd.getPidKd()[i]);
+            ch.setPidKi(cpd.getPidKi()[i]);
+            ch.setPidKd(cpd.getPidKd()[i]);
+            ch.setPidDt(cpd.getPidDt()[i]);
+            ch.setRelayDirection(cpd.getRelayDirection()[i]);
+            ch.setRelayHysteresis(cpd.getRelayHysteresis()[i]);
+            ch.setRelayK(cpd.getRelayK()[i]);
+            ch.setRelayDt(cpd.getRelayDt()[i]);
+            ch.setDevice(device);
+            chs.set(i, ch);
+        }
+
+        DeviceSettings ds = device.getSettings();
+        ds.setSound(cpd.getSound());
+        ds.setWaterCheck(cpd.getWaterCheck());
+        ds.setScreensaver(cpd.getScreensaver());
+        ds.setScreensaverType(cpd.getScreensaverType());
+        ds.setScreensaverAfter(cpd.getScreensaverAfter());
+        ds.setScreenLight(cpd.getScreenLight());
+        ds.setDateSecond(cpd.getDateSecond());
+        ds.setDateMinute(cpd.getDateMinute());
+        ds.setDateHour(cpd.getDateHour());
+        ds.setDateDay(cpd.getDateDay());
+        ds.setDateMonth(cpd.getDateMonth());
+        ds.setDateYear(cpd.getDateYear());
+        ds.setWifiSSID(cpd.getWifiSSID());
+        ds.setWifiPASS(cpd.getWifiPASS());
+        ds.setSendDataToServerEvery(cpd.getSendDataToServerEvery());
+        ds.setCheckSensorEvery(cpd.getCheckSensorEvery());
+        ds.setTurnOff(cpd.getTurnOff());
+        ds.setRestartCounter(cpd.getRestartCounter());
+        ds.setWorkedTimeInSeconds(cpd.getWorkedTimeInSeconds());
+        ds.setWorkedTimeInHours(cpd.getWorkedTimeInHours());
+
+        device.setChannels(chs);
+        device.setData(dd);
+        device.setSettings(ds);
+
+        return deviceRepository.save(device);
+    }
 
     public void deleteDevice(String UID) {
         log.info("deleting Device in database by UID {}", UID);

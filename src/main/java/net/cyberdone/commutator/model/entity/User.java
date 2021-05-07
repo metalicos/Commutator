@@ -38,6 +38,6 @@ public class User extends Model {
     @Column(nullable = false)
     private Status status;
 
-    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.MERGE)
     private List<Product> products;
 }

@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -54,7 +53,7 @@ public class DeviceSettings extends Model {
 
     private Integer workedTimeInHours = 0;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     private Device device;
 
 

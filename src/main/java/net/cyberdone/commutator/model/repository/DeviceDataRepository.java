@@ -10,9 +10,8 @@ import java.util.Optional;
 public interface DeviceDataRepository extends JpaRepository<DeviceData,Long> {
 
     Optional<DeviceData> findDeviceDataById(Long id);
-
     Optional<DeviceData> findDeviceDataByName(String name);
-
+    int countAllById(Long id);
     void deleteDeviceDataById(Long id);
 
     boolean existsDeviceDataById(Long id);

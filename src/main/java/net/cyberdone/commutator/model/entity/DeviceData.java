@@ -2,7 +2,6 @@ package net.cyberdone.commutator.model.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -18,7 +17,7 @@ public class DeviceData extends Model {
     @Column(name = "VALUE")
     private Double value;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Device device;
 
 }

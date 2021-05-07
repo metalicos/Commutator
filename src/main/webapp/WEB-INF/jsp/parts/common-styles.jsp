@@ -109,4 +109,9 @@
         -webkit-animation-duration: 0.5s;
         animation-duration: 0.5s;
     }
+
+    .animate_100ms {
+        -webkit-animation-duration: 0.100s;
+        animation-duration: 0.100s;
+    }
 </style>

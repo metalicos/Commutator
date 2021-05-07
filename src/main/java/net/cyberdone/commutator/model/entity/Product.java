@@ -2,7 +2,6 @@ package net.cyberdone.commutator.model.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import net.cyberdone.commutator.model.entity.enums.DeviceName;
 
 import javax.persistence.*;
@@ -19,6 +18,6 @@ public class Product extends Model{
     @Enumerated(EnumType.ORDINAL)
     private DeviceName device;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private User user;
 }
