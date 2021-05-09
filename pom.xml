@@ -35,14 +35,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!--		<dependency>-->
-        <!--			<groupId>org.springframework.boot</groupId>-->
-        <!--			<artifactId>spring-boot-starter-mail</artifactId>-->
-        <!--		</dependency>-->
-        <!--		<dependency>-->
-        <!--			<groupId>org.springframework.boot</groupId>-->
-        <!--			<artifactId>spring-boot-starter-security</artifactId>-->
-        <!--		</dependency>-->
+        		<dependency>
+        			<groupId>org.springframework.boot</groupId>
+        			<artifactId>spring-boot-starter-mail</artifactId>
+        		</dependency>
+        		<dependency>
+        			<groupId>org.springframework.boot</groupId>
+        			<artifactId>spring-boot-starter-security</artifactId>
+        		</dependency>
         <!--		<dependency>-->
         <!--			<groupId>org.springframework.session</groupId>-->
         <!--			<artifactId>spring-session-core</artifactId>-->
@@ -83,6 +83,16 @@
             <version>2.8.6</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>10.0.1</version>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-mustache</artifactId>-->
+<!--        </dependency>-->
 
 
         <!--		<dependency>-->
@@ -92,20 +102,20 @@
         <!--		</dependency>-->
 
 
-        <!-- JSTL for JSP -->
+<!--         JSTL for JSP-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
 
-        <!-- Need this to compile JSP -->
+<!--         Need this to compile JSP-->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
             <scope>provided</scope>
         </dependency>
 
-        <!-- Need this to compile JSP,tomcat-embed-jasper version is not working, no idea why -->
+<!--         Need this to compile JSP,tomcat-embed-jasper version is not working, no idea why-->
         <dependency>
             <groupId>org.eclipse.jdt.core.compiler</groupId>
             <artifactId>ecj</artifactId>

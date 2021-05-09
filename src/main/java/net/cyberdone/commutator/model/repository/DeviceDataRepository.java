@@ -7,11 +7,14 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface DeviceDataRepository extends JpaRepository<DeviceData,Long> {
+public interface DeviceDataRepository extends JpaRepository<DeviceData, Long> {
 
     Optional<DeviceData> findDeviceDataById(Long id);
+
     Optional<DeviceData> findDeviceDataByName(String name);
+
     int countAllById(Long id);
+
     void deleteDeviceDataById(Long id);
 
     boolean existsDeviceDataById(Long id);

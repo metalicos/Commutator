@@ -13,10 +13,8 @@ public class DeviceData extends Model {
 
     @Column(name = "NAME")
     private String name;
-
     @Column(name = "VALUE")
     private Double value;
-
     @ManyToOne
     private Device device;
 

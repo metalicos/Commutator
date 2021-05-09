@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Table
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Product extends Model{
+public class Product extends Model {
 
     @Column(length = 500, nullable = false, unique = true)
     private String UID;

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<html lang="en">
+<html lang="uk">
 <head>
     <title>Commutator | Пристрої</title>
     <%@include file="parts/common-styles.jsp" %>
@@ -32,7 +32,7 @@
     <div class="row py-3 animated zoomIn animate_500ms">
 
         <div class="col-xl-2 col-lg-4 col-md-6 offset-md-0 offset-sm-1 col-sm-10 offset-sm-1 my-lg-0 my-2 custom-zoom">
-            <a class="text-decoration-none" href="/cyberplant/v1">
+            <a class="text-decoration-none" href="/cyberplant">
                 <div class="card bg-dark-choco text-white">
                     <div class="card-body">
                         <img class="card-img-top mb-3"

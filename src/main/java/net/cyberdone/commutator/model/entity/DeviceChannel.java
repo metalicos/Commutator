@@ -14,35 +14,20 @@ import javax.persistence.Table;
 public class DeviceChannel extends Model {
 
     private Short channelType;
-
     private Short channelLogic;
-
     private Double maintainValue;
-
     private Short channelOpenValue;
-
     private Short channelControlMode;
-
     private Double analogSensorData;
-
     private Short pidDirection;
-
     private Double pidKp;
-
     private Double pidKi;
-
     private Double pidKd;
-
     private Integer pidDt;
-
     private Short relayDirection;
-
     private Double relayHysteresis;
-
     private Double relayK;
-
     private Integer relayDt;
-
     @ManyToOne
     private Device device;
 }
