@@ -16,7 +16,10 @@ public class CustomValidator{
     public static final String UNSIGNED_DOUBLE = "([0-9]+.[0-9]+)|([0-9]+)";
     public static final String UNSIGNED_INTEGER = "[0-9]+";
 
-    public boolean validateStringNotNullAndNotEmpty(String str){
+    public boolean strNotNullAndNotEmpty(String str){
         return (str!=null) && (!str.isEmpty());
+    }
+    public boolean objNotNull(Object obj){
+        return (obj!=null);
     }
 }

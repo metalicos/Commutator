@@ -1,8 +1,6 @@
 package net.cyberdone.commutator.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -23,9 +21,13 @@ public abstract class Model implements Serializable {
 
     @CreationTimestamp
     @Column(name = "CREATION_TIME")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     protected LocalDateTime created;
 
     @UpdateTimestamp
     @Column(name = "UPDATED_TIME")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     protected LocalDateTime updated;
 }

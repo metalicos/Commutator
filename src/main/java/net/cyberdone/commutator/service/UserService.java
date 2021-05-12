@@ -40,6 +40,18 @@ public class UserService {
         return user;
     }
 
+    public User getUser(Long id) {
+        log.info("getting user from database by id {}", id);
+        User user;
+        try {
+            user = userRepository.getOne(id);
+        } catch (Exception ex) {
+            log.info(ex.getMessage());
+            throw new EntityNotFoundException();
+        }
+        return user;
+    }
+
 
     public User createUser(UserDto userDto) {
         User user = new User();

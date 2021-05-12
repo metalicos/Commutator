@@ -2,12 +2,12 @@ package net.cyberdone.commutator.model.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import net.cyberdone.commutator.model.entity.enums.Role;
 import net.cyberdone.commutator.model.entity.enums.Status;
 
 import javax.persistence.*;
-import java.sql.Blob;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table
@@ -25,16 +25,25 @@ public class User extends Model {
     private String email;
 
     @Column(nullable = false, length = 500)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private String password;
 
     @Column(nullable = false)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private Boolean isEnabled = true;
 
     @Column(length = 500)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private String activationCode;
 
     @Lob
-    private Blob userPhoto;
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] photo;
 
     //    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     //    @CollectionTable(name = "user_role",joinColumns = @JoinColumn(name = "user_id"))
@@ -44,9 +53,14 @@ public class User extends Model {
 
     @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private Status status;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.MERGE)
-    private List<Product> products;
+    @OneToMany(mappedBy = "user")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Set<Product> products;
+
 
 }

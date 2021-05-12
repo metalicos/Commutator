@@ -2,64 +2,114 @@ package net.cyberdone.commutator.controller.cyberplant;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.cyberdone.commutator.model.entity.enums.CyberPlantEndpoint;
-import net.cyberdone.commutator.service.mqtt.MQTTService;
+import net.cyberdone.commutator.model.dto.CyberPlantChannelDto;
+import net.cyberdone.commutator.service.mqtt.CyberPlantMqttChannelTransmitterService;
+import net.cyberdone.commutator.validator.validation.CyberPlantChannelValidation;
+import org.springframework.lang.Nullable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.validation.constraints.NotBlank;
 
 @Slf4j
 @Controller
 @AllArgsConstructor
 @RequestMapping(value = "/cyberplant/channel-settings")
 public class CyberPlantChannelController {
+    private static final int MAX_TRY_TO_SEND = 5;
+    private CyberPlantMqttChannelTransmitterService transmitter;
+    private CyberPlantChannelValidation channelValidation;
 
-    private final MQTTService mqttService;
-
-    /**
-     * &uid=3232
-     * &channel=0
-     * &type=1
-     * &logic=1
-     * &maintain-value=2
-     * &open-value=3
-     * &control-mode=1
-     * &pid-direction=1
-     * &pid-kp=4
-     * &pid-ki=3
-     * &pid-kd=2
-     * &pid-dt=1
-     * &relay-direction=0
-     * &relay-hysteresis=34
-     * &relay-k=3
-     * &relay-dt=3
-     */
     @GetMapping
     @PreAuthorize("hasAnyAuthority('device:write','device:update')")
-    String changeSettingsOnDeviceChannel(@NotBlank @RequestParam("uid") String UID,
-                                         @NotBlank @RequestParam("channel") Integer channel,
-                                         @NotBlank @RequestParam("type") Integer type,
-                                         @NotBlank @RequestParam("logic") Integer logic,
-                                         @NotBlank @RequestParam("maintain-value") Double maintainValue,
-                                         @NotBlank @RequestParam("open-value") Integer openValue,
-                                         @NotBlank @RequestParam("control-mode") Integer controlMode,
-                                         @NotBlank @RequestParam("pid-direction") Integer pidDirection,
-                                         @NotBlank @RequestParam("pid-kp") Double pidKp,
-                                         @NotBlank @RequestParam("pid-ki") Double pidKi,
-                                         @NotBlank @RequestParam("pid-kd") Double pidKd,
-                                         @NotBlank @RequestParam("pid-dt") Integer pidDt,
-                                         @NotBlank @RequestParam("relay-direction") Integer relayDirection,
-                                         @NotBlank @RequestParam("relay-hysteresis") Double relayHysteresis,
-                                         @NotBlank @RequestParam("relay-k") Double relayK,
-                                         @NotBlank @RequestParam("relay-dt") Integer relayDt) {
-        String uID = "a4b4";
-        String endpoint = CyberPlantEndpoint.getUrl(CyberPlantEndpoint.WEBCONTROL, uID);
-        //mqttService.publish(endpoint, "#" + command + "#");
-        return "cyber-plant-v1";
+    String changeSettingsOnDeviceChannel(@Nullable @RequestParam("uid") String UID,
+                                         @Nullable @RequestParam("channel") Integer channel,
+                                         @Nullable @RequestParam("type") Integer type,
+                                         @Nullable @RequestParam("logic") Integer logic,
+                                         @Nullable @RequestParam("maintain-value") Double maintainValue,
+                                         @Nullable @RequestParam("open-value") Integer openValue,
+                                         @Nullable @RequestParam("control-mode") Integer controlMode,
+                                         @Nullable @RequestParam("pid-direction") Integer pidDirection,
+                                         @Nullable @RequestParam("pid-kp") Double pidKp,
+                                         @Nullable @RequestParam("pid-ki") Double pidKi,
+                                         @Nullable @RequestParam("pid-kd") Double pidKd,
+                                         @Nullable @RequestParam("pid-dt") Integer pidDt,
+                                         @Nullable @RequestParam("relay-direction") Integer relayDirection,
+                                         @Nullable @RequestParam("relay-hysteresis") Double relayHysteresis,
+                                         @Nullable @RequestParam("relay-k") Double relayK,
+                                         @Nullable @RequestParam("relay-dt") Integer relayDt,
+                                         Model model) {
+        UID = "a4b4"; //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+        CyberPlantChannelDto channelDto = new CyberPlantChannelDto(
+                UID, channel, type, logic, maintainValue, openValue, controlMode, pidDirection,
+                pidKp, pidKi, pidKd, pidDt, relayDirection, relayHysteresis, relayK, relayDt
+        );
+        log.info("params: uid={},channel={},type={},logic={},maintVal={},opVal={},contMode={},pidDir={}," +
+                        "pidKp={},pidKi={},pidKd={},pidDt={},relDir={},relHyst={},relK={},relDt={}",
+                UID, channel, type, logic, maintainValue, openValue, controlMode, pidDirection, pidKp, pidKi, pidKd,
+                pidDt, relayDirection, relayHysteresis, relayK, relayDt
+        );
+        setActiveChannel(channel,model);
+        boolean isValid = channelValidation.validate(model, channelDto);
+        if (!isValid) {
+            return "cyber-plant";
+        }
+
+        int tryCounter = 0;
+        while (!transmitter.transmitChannelSettings(channelDto) && tryCounter < MAX_TRY_TO_SEND) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                log.info(e.getMessage());
+            }
+            tryCounter++;
+        }
+        if (tryCounter == MAX_TRY_TO_SEND - 1) {
+            log.error("Transmit total fail data lost. {}", channelDto);
+            model.addAttribute("error", "Помилка передачі даних. Налаштування ймовірно не надіслані.");
+            return "cyber-plant";
+        }
+
+        model.addAttribute("success", "Налаштування успішно надіслано");
+        return "cyber-plant";
+    }
+
+    private void setActiveChannel(int channel, Model model) {
+        if (channel == 0) {
+            model.addAttribute("webControlIsActive", "");
+            model.addAttribute("channel1IsActive", "active");
+            model.addAttribute("channel2IsActive", "");
+            model.addAttribute("channel3IsActive", "");
+            model.addAttribute("channel4IsActive", "");
+            model.addAttribute("generalSettingsIsActive", "");
+        }
+        if (channel == 1) {
+            model.addAttribute("webControlIsActive", "");
+            model.addAttribute("channel1IsActive", "");
+            model.addAttribute("channel2IsActive", "active");
+            model.addAttribute("channel3IsActive", "");
+            model.addAttribute("channel4IsActive", "");
+            model.addAttribute("generalSettingsIsActive", "");
+        }
+        if (channel == 2) {
+            model.addAttribute("webControlIsActive", "");
+            model.addAttribute("channel1IsActive", "");
+            model.addAttribute("channel2IsActive", "");
+            model.addAttribute("channel3IsActive", "active");
+            model.addAttribute("channel4IsActive", "");
+            model.addAttribute("generalSettingsIsActive", "");
+        }
+        if (channel == 3) {
+            model.addAttribute("webControlIsActive", "");
+            model.addAttribute("channel1IsActive", "");
+            model.addAttribute("channel2IsActive", "");
+            model.addAttribute("channel3IsActive", "");
+            model.addAttribute("channel4IsActive", "active");
+            model.addAttribute("generalSettingsIsActive", "");
+        }
+
     }
 
 }

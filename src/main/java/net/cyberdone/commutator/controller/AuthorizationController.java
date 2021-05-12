@@ -142,8 +142,8 @@ public class AuthorizationController {
         }
         if (user.getPassword().equals(password)) {
             log.info("user inputted correct password, access allowed");
-            model.addAttribute("user", user);
-            session.setAttribute("user", user);
+            model.addAttribute("userID", user.getId());
+            session.setAttribute("userID", user.getId());
             log.info("user added to model and session");
         } else {
             model.addAttribute("passwordError", "Пароль введено не правильно");

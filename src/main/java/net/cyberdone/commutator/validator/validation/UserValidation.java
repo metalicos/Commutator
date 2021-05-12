@@ -14,27 +14,27 @@ public class UserValidation {
 
     public boolean validate(Model model, UserDto userDto){
 
-        if (!validator.validateStringNotNullAndNotEmpty(userDto.getFirstName())) {
+        if (!validator.strNotNullAndNotEmpty(userDto.getFirstName())) {
             model.addAttribute("firstNameError", "Ім'я не введено");
             model.addAttribute("userDto",userDto);
             return false;
         }
-        if (!validator.validateStringNotNullAndNotEmpty(userDto.getLastName())) {
+        if (!validator.strNotNullAndNotEmpty(userDto.getLastName())) {
             model.addAttribute("lastNameError", "Прізвище не введено");
             model.addAttribute("userDto",userDto);
             return false;
         }
-        if (!validator.validateStringNotNullAndNotEmpty(userDto.getEmail())) {
+        if (!validator.strNotNullAndNotEmpty(userDto.getEmail())) {
             model.addAttribute("emailError", "Email не введено");
             model.addAttribute("userDto",userDto);
             return false;
         }
-        if (!validator.validateStringNotNullAndNotEmpty(userDto.getPassword())) {
+        if (!validator.strNotNullAndNotEmpty(userDto.getPassword())) {
             model.addAttribute("passwordError", "Пароль не введено");
             model.addAttribute("userDto",userDto);
             return false;
         }
-        if (!validator.validateStringNotNullAndNotEmpty(userDto.getPasswordCheck())) {
+        if (!validator.strNotNullAndNotEmpty(userDto.getPasswordCheck())) {
             model.addAttribute("passwordCheckError", "Пароль для перевірки не введено");
             model.addAttribute("userDto",userDto);
             return false;
@@ -60,12 +60,12 @@ public class UserValidation {
     }
 
     public boolean validateLoginData(Model model, UserDto userDto){
-        if (!validator.validateStringNotNullAndNotEmpty(userDto.getEmail())) {
+        if (!validator.strNotNullAndNotEmpty(userDto.getEmail())) {
             model.addAttribute("emailError", "Email не введено");
             model.addAttribute("userDto",userDto);
             return false;
         }
-        if (!validator.validateStringNotNullAndNotEmpty(userDto.getPassword())) {
+        if (!validator.strNotNullAndNotEmpty(userDto.getPassword())) {
             model.addAttribute("passwordError", "Пароль не введено");
             model.addAttribute("userDto",userDto);
             return false;

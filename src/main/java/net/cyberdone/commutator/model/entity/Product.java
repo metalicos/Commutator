@@ -2,7 +2,8 @@ package net.cyberdone.commutator.model.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import net.cyberdone.commutator.model.entity.enums.DeviceName;
+import lombok.ToString;
+import net.cyberdone.commutator.model.entity.enums.DeviceInfo;
 
 import javax.persistence.*;
 
@@ -16,8 +17,18 @@ public class Product extends Model {
     private String UID;
 
     @Enumerated(EnumType.ORDINAL)
-    private DeviceName device;
+    private DeviceInfo device;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    private String description;
+    private String model;
+    private String type;
+    private String color;
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] photo;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private User user;
 }

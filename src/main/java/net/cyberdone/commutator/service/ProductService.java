@@ -3,6 +3,7 @@ package net.cyberdone.commutator.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.cyberdone.commutator.model.entity.Product;
+import net.cyberdone.commutator.model.entity.User;
 import net.cyberdone.commutator.model.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -68,4 +69,11 @@ public class ProductService {
         productRepository.delete(product);
     }
 
+    public Set<Product> getUserProducts(User user) {
+        Set<Product> products = productRepository.findProductsByUser(user);
+        if (products != null) {
+            return products;
+        }
+        throw new EntityNotFoundException();
+    }
 }

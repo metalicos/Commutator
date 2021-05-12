@@ -20,8 +20,23 @@ public class CyberPlantSettingsController {
     @GetMapping
     @PreAuthorize("hasAuthority('device:read')")
     String getCyberPlantV1Page(Model model) {
-        return "cyber-plant-v1";
+        setActive(model);
+        return "cyber-plant";
     }
+    private void setActive(Model model){
+        model.addAttribute("webControlIsActive", "");
+        model.addAttribute("channel1IsActive", "");
+        model.addAttribute("channel2IsActive", "");
+        model.addAttribute("channel3IsActive", "");
+        model.addAttribute("channel4IsActive", "");
+        model.addAttribute("generalSettingsIsActive", "active");
+    }
+
+
+
+
+
+
 
     //cyberplant/v1/channel/type?number=0&value=0
 /*

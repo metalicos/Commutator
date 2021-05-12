@@ -2,11 +2,9 @@ package net.cyberdone.commutator.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.cyberdone.commutator.model.dto.DeviceDto;
 import net.cyberdone.commutator.model.dto.cyberplant.CyberPlantDto;
-import net.cyberdone.commutator.model.entity.Device;
-import net.cyberdone.commutator.model.entity.DeviceChannel;
-import net.cyberdone.commutator.model.entity.DeviceData;
-import net.cyberdone.commutator.model.entity.DeviceSettings;
+import net.cyberdone.commutator.model.entity.*;
 import net.cyberdone.commutator.model.repository.DeviceChannelRepository;
 import net.cyberdone.commutator.model.repository.DeviceDataRepository;
 import net.cyberdone.commutator.model.repository.DeviceRepository;
@@ -51,9 +49,9 @@ public class DeviceService {
             settings.setDevice(device);
             deviceSettingsRepository.save(settings);
 
-            List<DeviceChannel> channels = Arrays.asList(new DeviceChannel(),new DeviceChannel(),
-                    new DeviceChannel(),new DeviceChannel());
-            channels.forEach(d->d.setDevice(device));
+            List<DeviceChannel> channels = Arrays.asList(new DeviceChannel(), new DeviceChannel(),
+                    new DeviceChannel(), new DeviceChannel());
+            channels.forEach(d -> d.setDevice(device));
             deviceChannelRepository.saveAll(channels);
 
             return device;
@@ -75,7 +73,7 @@ public class DeviceService {
         for (int i = 0; i < 4; i++) {
             DeviceData deviceData = new DeviceData();
             deviceData.setDevice(device);
-            deviceData.setName("sensor_"+i);
+            deviceData.setName("sensor_" + i);
             deviceData.setValue(cpd.getAnalogSensorData()[i]);
             dd.add(deviceDataRepository.save(deviceData));
         }
@@ -137,4 +135,36 @@ public class DeviceService {
         deviceRepository.delete(cyberPlantV1);
     }
 
+    public Set<Device> getUserDeviceSet(Set<Product> products) throws EntityNotFoundException {
+        Set<Device> devices = new HashSet<>();
+        for (Product p : products) {
+            Device device = mapProductToDevice(p.getUID());
+            devices.add(device);
+        }
+        return devices;
+    }
+    public Set<DeviceDto> getUserDeviceDtoSet(Set<Product> products) throws EntityNotFoundException {
+        Set<DeviceDto> devices = new HashSet<>();
+        for (Product p : products) {
+            Device device = mapProductToDevice(p.getUID());
+            DeviceDto deviceDto = new DeviceDto();
+            deviceDto.setName(p.getDevice().getName());
+            deviceDto.setDecription(p.getDescription());
+            deviceDto.setCustomName(device.getCustomName());
+            deviceDto.setUID(device.getUID());
+            deviceDto.setDeviceStatus(device.getDeviceStatus());
+            deviceDto.setChannels(device.getChannels());
+            deviceDto.setData(device.getData());
+            deviceDto.setSettings(device.getSettings());
+            deviceDto.setColor(p.getColor());
+            deviceDto.setModel(p.getModel());
+            devices.add(deviceDto);
+        }
+        return devices;
+    }
+
+    private Device mapProductToDevice(String productUID) throws EntityNotFoundException {
+        return deviceRepository.findDeviceByUID(productUID)
+                .orElseThrow(EntityNotFoundException::new);
+    }
 }
