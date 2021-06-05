@@ -2,6 +2,7 @@ package net.cyberdone.commutator.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.cyberdone.commutator.component.ImageConverter;
 import net.cyberdone.commutator.model.dto.DeviceDto;
 import net.cyberdone.commutator.model.dto.cyberplant.CyberPlantDto;
 import net.cyberdone.commutator.model.entity.*;
@@ -73,7 +74,7 @@ public class DeviceService {
         for (int i = 0; i < 4; i++) {
             DeviceData deviceData = new DeviceData();
             deviceData.setDevice(device);
-            deviceData.setName("sensor_" + i);
+            deviceData.setName("SENSOR_" + i);
             deviceData.setValue(cpd.getAnalogSensorData()[i]);
             dd.add(deviceDataRepository.save(deviceData));
         }
@@ -143,6 +144,7 @@ public class DeviceService {
         }
         return devices;
     }
+
     public Set<DeviceDto> getUserDeviceDtoSet(Set<Product> products) throws EntityNotFoundException {
         Set<DeviceDto> devices = new HashSet<>();
         for (Product p : products) {
@@ -158,6 +160,7 @@ public class DeviceService {
             deviceDto.setSettings(device.getSettings());
             deviceDto.setColor(p.getColor());
             deviceDto.setModel(p.getModel());
+            deviceDto.setPhoto(ImageConverter.convertBlobToBase64StringImage(p.getPhoto()));
             devices.add(deviceDto);
         }
         return devices;

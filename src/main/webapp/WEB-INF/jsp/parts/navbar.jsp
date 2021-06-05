@@ -29,6 +29,12 @@
                     </a>
                 </div>
                 <div class="list-footer text-start px-3">
+                    <a href="/auth/login" class="text-light-white">
+                        <i class="fa fa-registered py-2 pr-2"></i>Реєстрація
+                    </a>
+                </div>
+
+                <div class="list-footer text-start px-3">
                     <a href="#" class="text-light-white">
                         <i class="fa fa-user-alt py-2 pr-2"></i>Мій профіль
                     </a>

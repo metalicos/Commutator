@@ -60,6 +60,9 @@ public class CyberPlantMqttChannelTransmitterService {
             endpoint = CyberPlantEndpoint.getUrl(CyberPlantEndpoint.CHANNEL_RELAY_DT, ch, UID);
             mqttService.publish(endpoint, "#" + dto.getRelayDt() + "#");
 
+            endpoint = CyberPlantEndpoint.getUrl(CyberPlantEndpoint.SAVE_ALL, UID);
+            mqttService.publish(endpoint, "#Saving Data#");
+
         } catch (MqttException ex) {
             log.error("MQTT transmit transaction error! Device UID={} ,toChannel={} ,settings={}", UID, ch, dto);
             return false;

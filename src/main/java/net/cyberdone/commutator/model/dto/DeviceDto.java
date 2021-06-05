@@ -18,6 +18,7 @@ public class DeviceDto {
     private String color;
     private String decription;
     private String customName;
+    private String photo;
     private String UID;
     private DeviceStatus deviceStatus;
     private List<DeviceChannel> channels;

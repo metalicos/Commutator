@@ -26,7 +26,7 @@ public class DeviceSettingsService {
     }
 
 
-    public DeviceSettings getDDeviceSettings(Long id) {
+    public DeviceSettings getDeviceSettings(Long id) {
         log.info("getting DeviceSettings from database by id {}", id);
         return deviceSettingsRepository.findDeviceSettingsById(id)
                 .orElseThrow(EntityNotFoundException::new);

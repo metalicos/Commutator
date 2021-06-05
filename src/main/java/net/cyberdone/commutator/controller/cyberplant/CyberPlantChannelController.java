@@ -41,7 +41,6 @@ public class CyberPlantChannelController {
                                          @Nullable @RequestParam("relay-k") Double relayK,
                                          @Nullable @RequestParam("relay-dt") Integer relayDt,
                                          Model model) {
-        UID = "a4b4"; //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
         CyberPlantChannelDto channelDto = new CyberPlantChannelDto(
                 UID, channel, type, logic, maintainValue, openValue, controlMode, pidDirection,
                 pidKp, pidKi, pidKd, pidDt, relayDirection, relayHysteresis, relayK, relayDt
@@ -60,7 +59,7 @@ public class CyberPlantChannelController {
         int tryCounter = 0;
         while (!transmitter.transmitChannelSettings(channelDto) && tryCounter < MAX_TRY_TO_SEND) {
             try {
-                Thread.sleep(500);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 log.info(e.getMessage());
             }

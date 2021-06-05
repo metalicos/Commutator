@@ -3,6 +3,10 @@ package net.cyberdone.commutator.controller.cyberplant;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.cyberdone.commutator.model.dto.CyberPlantWebControlDto;
+import net.cyberdone.commutator.model.dto.ProductDto;
+import net.cyberdone.commutator.model.entity.Device;
+import net.cyberdone.commutator.service.DeviceService;
+import net.cyberdone.commutator.service.ProductService;
 import net.cyberdone.commutator.service.mqtt.CyberPlantMqttWebControlTransmittionService;
 import net.cyberdone.commutator.validator.validation.CyberPlantWebControlValidation;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,14 +24,19 @@ public class CyberPlantWebControlController {
 
     private final CyberPlantMqttWebControlTransmittionService transmittionService;
     private final CyberPlantWebControlValidation validation;
+    private final DeviceService deviceService;
+    private final ProductService productService;
 
     @GetMapping
     @PreAuthorize("hasAnyAuthority('device:write','device:update')")
     String getWebControlCommand(@RequestParam("uid") String UID,
                                 @RequestParam("command") Integer command,
                                 Model model) {
-        UID = "a4b4";//##############################################################################################
         CyberPlantWebControlDto webControlDto = new CyberPlantWebControlDto(UID, command);
+        Device device = deviceService.getDevice(UID);
+        ProductDto product = productService.getProduct(UID);
+        model.addAttribute("device", device);
+        model.addAttribute("product", product);
         setActive(model);
         boolean isValid = validation.validate(model, webControlDto);
         if (!isValid) {

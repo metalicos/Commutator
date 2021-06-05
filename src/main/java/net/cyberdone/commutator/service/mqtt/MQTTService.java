@@ -38,8 +38,6 @@ public class MQTTService implements MqttCallback {
             Gson gson = new Gson();
             String json = message.toString();
             CyberPlantDto cyberPlantDto = gson.fromJson(json, CyberPlantDto.class);
-            System.out.println(cyberPlantDto);
-
             deviceService.updateDevice(cyberPlantDto);
         }
     }

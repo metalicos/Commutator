@@ -33,7 +33,7 @@ public class ImageConverter {
         return image;
     }
 
-    public byte[] convertImageToBlob(BufferedImage image) {
+    public static byte[] convertImageToBlob(BufferedImage image) {
         ByteArrayOutputStream baos = null;
         ByteArrayInputStream bais = null;
         try {
@@ -48,7 +48,7 @@ public class ImageConverter {
         return bais != null ? bais.readAllBytes() : null;
     }
 
-    public byte[] convertImageFromFileToBlob(String filePath) {
+    public static byte[] convertImageFromFileToBlob(String filePath) {
         BufferedImage image = null;
         try {
             image = ImageIO.read(new File(filePath));
@@ -59,7 +59,7 @@ public class ImageConverter {
         return convertImageToBlob(image);
     }
 
-    public byte[] setDefaultImageFromFileWhileBlobNull(byte[] blob, String defaultImagePath) {
+    public static byte[] setDefaultImageFromFileWhileBlobNull(byte[] blob, String defaultImagePath) {
         ByteArrayOutputStream baos = null;
         if (blob != null)
             return blob;
@@ -69,6 +69,14 @@ public class ImageConverter {
         }
         log.warn("Default Image Path is NULL");
         return null;
+    }
+
+    public static String convertBlobToBase64StringImage(byte[] imageBlob) {
+        return Base64.getEncoder().encodeToString(imageBlob);
+    }
+
+    public static byte[] convertBase64StringImageToBlob(String base64) {
+        return Base64.getDecoder().decode(base64);
     }
 
     private static void close(AutoCloseable closeable) {

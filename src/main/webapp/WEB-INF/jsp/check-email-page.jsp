@@ -24,11 +24,8 @@
 
     <div style="max-width: 350px;margin: auto;">
         <div class="d-flex justify-content-between m-0 py-2 pt-3 bg-success text-white px-3 animated fadeInDown animate_500ms">
-            <h3>Рейстрація успішно проведена! Підтвердіть Ваш обліковий запис перейшовши по посиланню, відправленому Вам на Email.</h3>
+            <h3>Реєстрація успішно проведена! Підтвердіть Ваш обліковий запис перейшовши за посиланням, відправленим Вам на Email.</h3>
         </div>
-
-
-
     </div>
 </div>
 <!-- SCRIPTS -->

@@ -25,9 +25,7 @@
 <!-- CONTENT -->
 <div class="height-100 py-3">
 
-    <div class="d-flex justify-content-between m-0 py-2 pt-3 bg-dark-choco text-white px-3">
-        <h3>Багатоканальний контролер поливу рослин з інтернет-керуванням</h3>
-    </div>
+    <%@include file="parts/cyberplant/menu.jsp" %>
 
     <div class="my-2">
 
@@ -91,7 +89,7 @@
                                 <div class="col-4"></div>
                                 <div class="col-4">
                                     <a class="btn btn-secondary my-1 py-5  col-12 col-md-11 col-lg-10 col-xl-8"
-                                       href="/cyberplant/webcontrol?command=3&uid=${device.uid}"><i
+                                       href="/cyberplant/webcontrol?command=4&uid=${device.UID}"><i
                                             class="fa fa-arrow-up"></i></a>
                                 </div>
                                 <div class="col-4"></div>
@@ -100,16 +98,16 @@
                                 <%--                                    <div class="col-3"></div>--%>
                                 <div class="col-4">
                                     <a class="btn btn-secondary my-1 py-5  col-12 col-md-11 col-lg-10 col-xl-8"
-                                       href="/cyberplant/webcontrol?command=1&uid=${device.uid}"><i
+                                       href="/cyberplant/webcontrol?command=1&uid=${device.UID}"><i
                                             class="fa fa-arrow-left"></i></a>
                                 </div>
                                 <div class="col-4">
                                     <a class="btn btn-dark-choco my-1 py-5  col-12 col-md-11 col-lg-10 col-xl-8"
-                                       href="/cyberplant/webcontrol?command=0&uid=${device.uid}">Вибрати</a>
+                                       href="/cyberplant/webcontrol?command=0&uid=${device.UID}">Вибрати</a>
                                 </div>
                                 <div class="col-4">
                                     <a class="btn btn-secondary my-1 py-5  col-12 col-md-11 col-lg-10 col-xl-8"
-                                       href="/cyberplant/webcontrol?command=2&uid=${device.uid}"><i
+                                       href="/cyberplant/webcontrol?command=2&uid=${device.UID}"><i
                                             class="fa fa-arrow-right"></i></a>
                                 </div>
                                 <%--                                    <div class="col-3"></div>--%>
@@ -119,7 +117,7 @@
                                 <div class="col-4"></div>
                                 <div class="col-4">
                                     <a class="btn btn-secondary my-1 py-5  col-12 col-md-11 col-lg-10 col-xl-8"
-                                       href="/cyberplant/webcontrol?command=4&uid=${device.uid}"><i
+                                       href="/cyberplant/webcontrol?command=3&uid=${device.UID}"><i
                                             class="fa fa-arrow-down"></i></a>
                                 </div>
                                 <div class="col-4"></div>
@@ -129,15 +127,15 @@
                                 <%--                                    <div class="col-3"></div>--%>
                                 <div class="col-4">
                                     <a class="btn btn-danger my-1 py-5  col-12 col-md-11 col-lg-10 col-xl-8"
-                                       href="">Стерти</a>
+                                       href="/cyberplant/webcontrol?command=8&uid=${device.UID}">Стерти</a>
                                 </div>
                                 <div class="col-4">
                                     <a class="btn btn-success my-1 py-5  col-12 col-md-11 col-lg-10 col-xl-8"
-                                       href="">Зберегти</a>
+                                       href="/cyberplant/webcontrol?command=7&uid=${device.UID}">Зберегти</a>
                                 </div>
                                 <div class="col-4">
                                     <a class="btn btn-dark my-1 py-5  col-12 col-md-11 col-lg-10 col-xl-8"
-                                       href="/cyberplant/webcontrol?command=5&uid=${device.uid}">Назад</a>
+                                       href="/cyberplant/webcontrol?command=5&uid=${device.UID}">Назад</a>
                                 </div>
                                 <%--                                    <div class="col-3"></div>--%>
                             </div>
@@ -149,7 +147,7 @@
                     <div class="tab-pane ${channel1IsActive}" id="sett-ch1" role="tabpanel"
                          aria-labelledby="list-sett-ch1">
                         <form action="/cyberplant/channel-settings" method="get">
-                            <input type="hidden" name="uid" value="${device.uid}">
+                            <input type="hidden" name="uid" value="${device.UID}">
                             <input type="hidden" name="channel" value="0">
 
                             <div class="card bg-light my-2 col-12">
@@ -162,17 +160,18 @@
                                     </c:if>
 
                                     <!-- Заголовок -->
-                                    <div class="d-lg-flex d-none bg-dark-choco text-white p-2 mb-4">
-                                        <h1 class="col-12 h4 text-uppercase text-center font-weight-bold  py-2">Канал
-                                            1</h1>
+                                    <div class="d-lg-block d-none bg-dark-choco text-white p-2 mb-4">
+                                        <div>
+                                        <h1 class="col-12 h4 text-uppercase text-center font-weight-bold  py-2">Канал 1</h1>
+                                        </div>
                                         <div class="d-flex py-2">
-                                            <div class="col-4">
+                                            <div class="col-4 text-center">
                                                 <h1 class="h5 text-uppercase">Назва налаштування</h1>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-4 text-center">
                                                 <h1 class="h5 text-uppercase">Панель управління</h1>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-4 text-center">
                                                 <h1 class="h5 text-uppercase">Станом на даний момент</h1>
                                             </div>
                                         </div>
@@ -195,13 +194,13 @@
                                                     <input type="radio" name="type" value="0" checked>
                                                     Реле
                                                 </div>
-                                                <div class="btn btn-secondary col-6 ">
+                                                <div class="btn btn-secondary col-6">
                                                     <input type="radio" name="type" value="1"> Диммер
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 d-none d-lg-flex">
-                                            <h1 class="h5">Диммер</h1>
+                                            <h1 class="h5">${channel1.channelType}</h1>
                                         </div>
                                     </div>
 
@@ -227,7 +226,7 @@
                                             </div>
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">GND</h1>
+                                            <h1 class="h5">${channel1.channelLogic}</h1>
                                         </div>
                                     </div>
 
@@ -244,10 +243,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="maintain-value"
-                                                   min="0.0" max="100.0" step="0.1" value="${channelDto.maintainValue}">
+                                                   min="0.0" max="100.0" step="0.1" value="${channel1.maintainValue}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0</h1>
+                                            <h1 class="h5">${channel1.maintainValue}</h1>
                                         </div>
                                     </div>
 
@@ -264,10 +263,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="open-value"
-                                                   min="0" max="65535" step="1" value="${channelDto.openValue}">
+                                                   min="0" max="65535" step="1" value="${channel1.channelOpenValue}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0</h1>
+                                            <h1 class="h5">${channel1.channelOpenValue}</h1>
                                         </div>
                                     </div>
 
@@ -296,7 +295,7 @@
                                             </div>
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">WiFi</h1>
+                                            <h1 class="h5">${channel1.channelControlMode}</h1>
                                         </div>
                                     </div>
 
@@ -323,7 +322,7 @@
                                             </div>
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">По зростанню</h1>
+                                            <h1 class="h5">${channel1.pidDirection}</h1>
                                         </div>
                                     </div>
 
@@ -340,10 +339,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="pid-kp"
-                                                   min="-100" max="100" step="0.01" value="${channelDto.pidKp}">
+                                                   min="-100" max="100" step="0.01" value="${channel1.pidKp}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.05</h1>
+                                            <h1 class="h5">${channel1.pidKp}</h1>
                                         </div>
                                     </div>
 
@@ -360,10 +359,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="pid-ki"
-                                                   min="-100" max="100" step="0.01" value="${channelDto.pidKi}">
+                                                   min="-100" max="100" step="0.01" value="${channel1.pidKi}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.02</h1>
+                                            <h1 class="h5">${channel1.pidKi}</h1>
                                         </div>
                                     </div>
 
@@ -380,10 +379,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="pid-kd"
-                                                   min="-100" max="100" step="0.01" value="${channelDto.pidKd}">
+                                                   min="-100" max="100" step="0.01" value="${channel1.pidKd}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.2</h1>
+                                            <h1 class="h5">${channel1.pidKd}</h1>
                                         </div>
                                     </div>
 
@@ -400,10 +399,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="pid-dt"
-                                                   min="0" max="4294967295" step="1" value="${channelDto.pidDt}">
+                                                   min="0" max="4294967295" step="1" value="${channel1.pidDt}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.05</h1>
+                                            <h1 class="h5">${channel1.pidDt}</h1>
                                         </div>
                                     </div>
 
@@ -430,7 +429,7 @@
                                             </div>
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">По зростанню</h1>
+                                            <h1 class="h5">${channel1.relayDirection}</h1>
                                         </div>
                                     </div>
 
@@ -448,10 +447,10 @@
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="relay-hysteresis"
                                                    min="-100" max="100" step="0.01"
-                                                   value="${channelDto.relayHysteresis}">
+                                                   value="${channel1.relayHysteresis}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.05</h1>
+                                            <h1 class="h5">${channel1.relayHysteresis}</h1>
                                         </div>
                                     </div>
 
@@ -468,10 +467,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="relay-k"
-                                                   min="-100" max="100" step="0.01" value="${channelDto.relayK}">
+                                                   min="-100" max="100" step="0.01" value="${channel1.relayK}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.02</h1>
+                                            <h1 class="h5">${channel1.relayK}</h1>
                                         </div>
                                     </div>
 
@@ -488,14 +487,15 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="relay-dt"
-                                                   min="0" max="4294967295" step="1" value="${channelDto.relayDt}">
+                                                   min="0" max="4294967295" step="1" value="${channel1.relayDt}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.05</h1>
+                                            <h1 class="h5">${channel1.relayDt}</h1>
                                         </div>
                                     </div>
 
                                     <button type="submit" class="btn btn-dark-choco w-100 py-2 m-2">Зберегти</button>
+
 
                                 </div>
                             </div>
@@ -506,7 +506,7 @@
                     <div class="tab-pane ${channel2IsActive}" id="sett-ch2" role="tabpanel"
                          aria-labelledby="list-sett-ch2">
                         <form action="/cyberplant/channel-settings" method="get">
-                            <input type="hidden" name="uid" value="${device.uid}">
+                            <input type="hidden" name="uid" value="${device.UID}">
                             <input type="hidden" name="channel" value="1">
 
                             <div class="card bg-light my-2 col-12">
@@ -519,17 +519,18 @@
                                     </c:if>
 
                                     <!-- Заголовок -->
-                                    <div class="d-lg-flex d-none bg-dark-choco text-white p-2 mb-4">
-                                        <h1 class="col-12 h4 text-uppercase text-center font-weight-bold  py-2">Канал
-                                            2</h1>
+                                    <div class="d-lg-block d-none bg-dark-choco text-white p-2 mb-4">
+                                        <div>
+                                            <h1 class="col-12 h4 text-uppercase text-center font-weight-bold  py-2">Канал 2</h1>
+                                        </div>
                                         <div class="d-flex py-2">
-                                            <div class="col-4">
+                                            <div class="col-4 text-center">
                                                 <h1 class="h5 text-uppercase">Назва налаштування</h1>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-4 text-center">
                                                 <h1 class="h5 text-uppercase">Панель управління</h1>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-4 text-center">
                                                 <h1 class="h5 text-uppercase">Станом на даний момент</h1>
                                             </div>
                                         </div>
@@ -558,7 +559,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-4 d-none d-lg-flex">
-                                            <h1 class="h5">Диммер</h1>
+                                            <h1 class="h5">${channel2.channelType}</h1>
                                         </div>
                                     </div>
 
@@ -584,7 +585,7 @@
                                             </div>
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">GND</h1>
+                                            <h1 class="h5">${channel2.channelLogic}</h1>
                                         </div>
                                     </div>
 
@@ -601,10 +602,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="maintain-value"
-                                                   min="0.0" max="100.0" step="0.1" value="${channelDto.maintainValue}">
+                                                   min="0.0" max="100.0" step="0.1" value="${channel2.maintainValue}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0</h1>
+                                            <h1 class="h5">${channel2.maintainValue}</h1>
                                         </div>
                                     </div>
 
@@ -621,10 +622,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="open-value"
-                                                   min="0" max="65535" step="1" value="${channelDto.openValue}">
+                                                   min="0" max="65535" step="1" value="${channel2.channelOpenValue}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0</h1>
+                                            <h1 class="h5">${channel2.channelOpenValue}</h1>
                                         </div>
                                     </div>
 
@@ -653,7 +654,7 @@
                                             </div>
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">WiFi</h1>
+                                            <h1 class="h5">${channel2.channelControlMode}</h1>
                                         </div>
                                     </div>
 
@@ -680,7 +681,7 @@
                                             </div>
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">По зростанню</h1>
+                                            <h1 class="h5">${channel2.pidDirection}</h1>
                                         </div>
                                     </div>
 
@@ -697,10 +698,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="pid-kp"
-                                                   min="-100" max="100" step="0.01" value="${channelDto.pidKp}">
+                                                   min="-100" max="100" step="0.01" value="${channel2.pidKp}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.05</h1>
+                                            <h1 class="h5">${channel2.pidKp}</h1>
                                         </div>
                                     </div>
 
@@ -717,10 +718,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="pid-ki"
-                                                   min="-100" max="100" step="0.01" value="${channelDto.pidKi}">
+                                                   min="-100" max="100" step="0.01" value="${channel2.pidKi}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.02</h1>
+                                            <h1 class="h5">${channel2.pidKi}</h1>
                                         </div>
                                     </div>
 
@@ -737,10 +738,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="pid-kd"
-                                                   min="-100" max="100" step="0.01" value="${channelDto.pidKd}">
+                                                   min="-100" max="100" step="0.01" value="${channel2.pidKd}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.2</h1>
+                                            <h1 class="h5">${channel2.pidKd}</h1>
                                         </div>
                                     </div>
 
@@ -757,10 +758,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="pid-dt"
-                                                   min="0" max="4294967295" step="1" value="${channelDto.pidDt}">
+                                                   min="0" max="4294967295" step="1" value="${channel2.pidDt}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.05</h1>
+                                            <h1 class="h5">${channel2.pidDt}</h1>
                                         </div>
                                     </div>
 
@@ -787,7 +788,7 @@
                                             </div>
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">По зростанню</h1>
+                                            <h1 class="h5">${channel2.relayDirection}</h1>
                                         </div>
                                     </div>
 
@@ -805,10 +806,10 @@
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="relay-hysteresis"
                                                    min="-100" max="100" step="0.01"
-                                                   value="${channelDto.relayHysteresis}">
+                                                   value="${channel2.relayHysteresis}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.05</h1>
+                                            <h1 class="h5">${channel2.relayHysteresis}</h1>
                                         </div>
                                     </div>
 
@@ -825,10 +826,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="relay-k"
-                                                   min="-100" max="100" step="0.01" value="${channelDto.relayK}">
+                                                   min="-100" max="100" step="0.01" value="${channel2.relayK}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.02</h1>
+                                            <h1 class="h5">${channel2.relayK}</h1>
                                         </div>
                                     </div>
 
@@ -845,10 +846,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="relay-dt"
-                                                   min="0" max="4294967295" step="1" value="${channelDto.relayDt}">
+                                                   min="0" max="4294967295" step="1" value="${channel2.relayDt}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.05</h1>
+                                            <h1 class="h5">${channel2.relayDt}</h1>
                                         </div>
                                     </div>
 
@@ -863,7 +864,7 @@
                     <div class="tab-pane ${channel3IsActive}" id="sett-ch3" role="tabpanel"
                          aria-labelledby="list-sett-ch3">
                         <form action="/cyberplant/channel-settings" method="get">
-                            <input type="hidden" name="uid" value="${device.uid}">
+                            <input type="hidden" name="uid" value="${device.UID}">
                             <input type="hidden" name="channel" value="1">
 
                             <div class="card bg-light my-2 col-12">
@@ -876,17 +877,18 @@
                                     </c:if>
 
                                     <!-- Заголовок -->
-                                    <div class="d-lg-flex d-none bg-dark-choco text-white p-2 mb-4">
-                                        <h1 class="col-12 h4 text-uppercase text-center font-weight-bold  py-2">Канал
-                                            3</h1>
+                                    <div class="d-lg-block d-none bg-dark-choco text-white p-2 mb-4">
+                                        <div>
+                                            <h1 class="col-12 h4 text-uppercase text-center font-weight-bold  py-2">Канал 3</h1>
+                                        </div>
                                         <div class="d-flex py-2">
-                                            <div class="col-4">
+                                            <div class="col-4 text-center">
                                                 <h1 class="h5 text-uppercase">Назва налаштування</h1>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-4 text-center">
                                                 <h1 class="h5 text-uppercase">Панель управління</h1>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-4 text-center">
                                                 <h1 class="h5 text-uppercase">Станом на даний момент</h1>
                                             </div>
                                         </div>
@@ -915,7 +917,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-4 d-none d-lg-flex">
-                                            <h1 class="h5">Диммер</h1>
+                                            <h1 class="h5">${channel3.channelType}</h1>
                                         </div>
                                     </div>
 
@@ -941,7 +943,7 @@
                                             </div>
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">GND</h1>
+                                            <h1 class="h5">${channel3.channelLogic}</h1>
                                         </div>
                                     </div>
 
@@ -958,10 +960,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="maintain-value"
-                                                   min="0.0" max="100.0" step="0.1" value="${channelDto.maintainValue}">
+                                                   min="0.0" max="100.0" step="0.1" value="${channel3.maintainValue}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0</h1>
+                                            <h1 class="h5">${channel3.maintainValue}</h1>
                                         </div>
                                     </div>
 
@@ -978,10 +980,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="open-value"
-                                                   min="0" max="65535" step="1" value="${channelDto.openValue}">
+                                                   min="0" max="65535" step="1" value="${channel3.channelOpenValue}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0</h1>
+                                            <h1 class="h5">${channel3.channelOpenValue}</h1>
                                         </div>
                                     </div>
 
@@ -1010,7 +1012,7 @@
                                             </div>
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">WiFi</h1>
+                                            <h1 class="h5">${channel3.channelControlMode}</h1>
                                         </div>
                                     </div>
 
@@ -1037,7 +1039,7 @@
                                             </div>
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">По зростанню</h1>
+                                            <h1 class="h5">${channel3.pidDirection}</h1>
                                         </div>
                                     </div>
 
@@ -1054,10 +1056,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="pid-kp"
-                                                   min="-100" max="100" step="0.01" value="${channelDto.pidKp}">
+                                                   min="-100" max="100" step="0.01" value="${channel3.pidKp}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.05</h1>
+                                            <h1 class="h5">${channel3.pidKp}</h1>
                                         </div>
                                     </div>
 
@@ -1074,10 +1076,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="pid-ki"
-                                                   min="-100" max="100" step="0.01" value="${channelDto.pidKi}">
+                                                   min="-100" max="100" step="0.01" value="${channel3.pidKi}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.02</h1>
+                                            <h1 class="h5">${channel3.pidKi}</h1>
                                         </div>
                                     </div>
 
@@ -1094,10 +1096,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="pid-kd"
-                                                   min="-100" max="100" step="0.01" value="${channelDto.pidKd}">
+                                                   min="-100" max="100" step="0.01" value="${channel3.pidKd}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.2</h1>
+                                            <h1 class="h5">${channel3.pidKd}</h1>
                                         </div>
                                     </div>
 
@@ -1114,10 +1116,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="pid-dt"
-                                                   min="0" max="4294967295" step="1" value="${channelDto.pidDt}">
+                                                   min="0" max="4294967295" step="1" value="${channel3.pidDt}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.05</h1>
+                                            <h1 class="h5">${channel3.pidDt}</h1>
                                         </div>
                                     </div>
 
@@ -1144,7 +1146,7 @@
                                             </div>
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">По зростанню</h1>
+                                            <h1 class="h5">${channel3.relayDirection}</h1>
                                         </div>
                                     </div>
 
@@ -1162,10 +1164,10 @@
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="relay-hysteresis"
                                                    min="-100" max="100" step="0.01"
-                                                   value="${channelDto.relayHysteresis}">
+                                                   value="${channel3.relayHysteresis}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.05</h1>
+                                            <h1 class="h5">${channel3.relayHysteresis}</h1>
                                         </div>
                                     </div>
 
@@ -1182,10 +1184,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="relay-k"
-                                                   min="-100" max="100" step="0.01" value="${channelDto.relayK}">
+                                                   min="-100" max="100" step="0.01" value="${channel3.relayK}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.02</h1>
+                                            <h1 class="h5">${channel3.relayK}</h1>
                                         </div>
                                     </div>
 
@@ -1202,10 +1204,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="relay-dt"
-                                                   min="0" max="4294967295" step="1" value="${channelDto.relayDt}">
+                                                   min="0" max="4294967295" step="1" value="${channel3.relayDt}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.05</h1>
+                                            <h1 class="h5">${channel3.relayDt}</h1>
                                         </div>
                                     </div>
 
@@ -1220,7 +1222,7 @@
                     <div class="tab-pane ${channel4IsActive}" id="sett-ch4" role="tabpanel"
                          aria-labelledby="list-sett-ch4">
                         <form action="/cyberplant/channel-settings" method="get">
-                            <input type="hidden" name="uid" value="${device.uid}">
+                            <input type="hidden" name="uid" value="${device.UID}">
                             <input type="hidden" name="channel" value="1">
 
                             <div class="card bg-light my-2 col-12">
@@ -1233,17 +1235,18 @@
                                     </c:if>
 
                                     <!-- Заголовок -->
-                                    <div class="d-lg-flex d-none bg-dark-choco text-white p-2 mb-4">
-                                        <h1 class="col-12 h4 text-uppercase text-center font-weight-bold  py-2">Канал
-                                            4</h1>
+                                    <div class="d-lg-block d-none bg-dark-choco text-white p-2 mb-4">
+                                        <div>
+                                            <h1 class="col-12 h4 text-uppercase text-center font-weight-bold  py-2">Канал 4</h1>
+                                        </div>
                                         <div class="d-flex py-2">
-                                            <div class="col-4">
+                                            <div class="col-4 text-center">
                                                 <h1 class="h5 text-uppercase">Назва налаштування</h1>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-4 text-center">
                                                 <h1 class="h5 text-uppercase">Панель управління</h1>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-4 text-center">
                                                 <h1 class="h5 text-uppercase">Станом на даний момент</h1>
                                             </div>
                                         </div>
@@ -1272,7 +1275,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-4 d-none d-lg-flex">
-                                            <h1 class="h5">Диммер</h1>
+                                            <h1 class="h5">${channel4.channelType}</h1>
                                         </div>
                                     </div>
 
@@ -1298,7 +1301,7 @@
                                             </div>
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">GND</h1>
+                                            <h1 class="h5">${channel4.channelLogic}</h1>
                                         </div>
                                     </div>
 
@@ -1315,10 +1318,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="maintain-value"
-                                                   min="0.0" max="100.0" step="0.1" value="${channelDto.maintainValue}">
+                                                   min="0.0" max="100.0" step="0.1" value="${channel4.maintainValue}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0</h1>
+                                            <h1 class="h5">${channel4.maintainValue}</h1>
                                         </div>
                                     </div>
 
@@ -1335,10 +1338,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="open-value"
-                                                   min="0" max="65535" step="1" value="${channelDto.openValue}">
+                                                   min="0" max="65535" step="1" value="${channel4.channelOpenValue}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0</h1>
+                                            <h1 class="h5">${channel4.channelOpenValue}</h1>
                                         </div>
                                     </div>
 
@@ -1367,7 +1370,7 @@
                                             </div>
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">WiFi</h1>
+                                            <h1 class="h5">${channel4.channelControlMode}</h1>
                                         </div>
                                     </div>
 
@@ -1394,7 +1397,7 @@
                                             </div>
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">По зростанню</h1>
+                                            <h1 class="h5">${channel4.pidDirection}</h1>
                                         </div>
                                     </div>
 
@@ -1411,10 +1414,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="pid-kp"
-                                                   min="-100" max="100" step="0.01" value="${channelDto.pidKp}">
+                                                   min="-100" max="100" step="0.01" value="${channel4.pidKp}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.05</h1>
+                                            <h1 class="h5">${channel4.pidKp}</h1>
                                         </div>
                                     </div>
 
@@ -1431,10 +1434,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="pid-ki"
-                                                   min="-100" max="100" step="0.01" value="${channelDto.pidKi}">
+                                                   min="-100" max="100" step="0.01" value="${channel4.pidKi}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.02</h1>
+                                            <h1 class="h5">${channel4.pidKi}</h1>
                                         </div>
                                     </div>
 
@@ -1451,10 +1454,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="pid-kd"
-                                                   min="-100" max="100" step="0.01" value="${channelDto.pidKd}">
+                                                   min="-100" max="100" step="0.01" value="${channel4.pidKi}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.2</h1>
+                                            <h1 class="h5">${channel4.pidKi}</h1>
                                         </div>
                                     </div>
 
@@ -1471,10 +1474,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="pid-dt"
-                                                   min="0" max="4294967295" step="1" value="${channelDto.pidDt}">
+                                                   min="0" max="4294967295" step="1" value="${channel4.pidDt}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.05</h1>
+                                            <h1 class="h5">${channel4.pidDt}</h1>
                                         </div>
                                     </div>
 
@@ -1501,7 +1504,7 @@
                                             </div>
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">По зростанню</h1>
+                                            <h1 class="h5">${channel4.relayDirection}</h1>
                                         </div>
                                     </div>
 
@@ -1519,10 +1522,10 @@
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="relay-hysteresis"
                                                    min="-100" max="100" step="0.01"
-                                                   value="${channelDto.relayHysteresis}">
+                                                   value="${channel4.relayHysteresis}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.05</h1>
+                                            <h1 class="h5">${channel4.relayHysteresis}</h1>
                                         </div>
                                     </div>
 
@@ -1539,10 +1542,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="relay-k"
-                                                   min="-100" max="100" step="0.01" value="${channelDto.relayK}">
+                                                   min="-100" max="100" step="0.01" value="${channel4.relayK}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.02</h1>
+                                            <h1 class="h5">${channel4.relayK}</h1>
                                         </div>
                                     </div>
 
@@ -1559,10 +1562,10 @@
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12">
                                             <input class="form-control" type="number" name="relay-dt"
-                                                   min="0" max="4294967295" step="1" value="${channelDto.relayDt}">
+                                                   min="0" max="4294967295" step="1" value="${channel4.relayDt}">
                                         </div>
                                         <div class="col-4 d-none d-lg-flex">
-                                            <h1 class="h5">0.05</h1>
+                                            <h1 class="h5">${channel4.relayDt}</h1>
                                         </div>
                                     </div>
 
@@ -1577,7 +1580,7 @@
                     <div class="tab-pane ${generalSettingsIsActive}" id="sett-general" role="tabpanel"
                          aria-labelledby="list-sett-general">
                         <form action="/cyberplant/settings" method="get">
-                            <input type="hidden" name="uid" value="${device.uid}">
+                            <input type="hidden" name="uid" value="${device.UID}">
                             <input type="hidden" name="channel" value="1">
 
                             <div class="card bg-light my-2 col-12">
@@ -1590,17 +1593,19 @@
                                     </c:if>
 
                                     <!-- Заголовок -->
-                                    <div class="d-lg-flex d-none bg-dark-choco text-white p-2 mb-4">
-                                        <h1 class="col-12 h4 text-uppercase text-center font-weight-bold  py-2">Загальні
-                                            налаштування</h1>
+                                    <div class="d-lg-block d-none bg-dark-choco text-white p-2 mb-4">
+                                        <div>
+                                            <h1 class="col-12 h4 text-uppercase text-center font-weight-bold  py-2">Загальні
+                                                налаштування</h1>
+                                        </div>
                                         <div class="d-flex py-2">
-                                            <div class="col-4">
+                                            <div class="col-4 text-center">
                                                 <h1 class="h5 text-uppercase">Назва налаштування</h1>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-4 text-center">
                                                 <h1 class="h5 text-uppercase">Панель управління</h1>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-4 text-center">
                                                 <h1 class="h5 text-uppercase">Станом на даний момент</h1>
                                             </div>
                                         </div>
@@ -1629,7 +1634,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-4 d-none d-lg-flex">
-                                            <h1 class="h5">Ввімкн.</h1>
+                                            <h1 class="h5">${settings.sound}</h1>
                                         </div>
                                     </div>
 
@@ -1651,7 +1656,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-4 d-none d-lg-flex">
-                                            <h1 class="h5">Ввімкн.</h1>
+                                            <h1 class="h5">${settings.waterCheck}</h1>
                                         </div>
                                     </div>
 
@@ -1673,7 +1678,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-4 d-none d-lg-flex">
-                                            <h1 class="h5">Ввімкн.</h1>
+                                            <h1 class="h5">${settings.screensaver}</h1>
                                         </div>
                                     </div>
 
@@ -1696,7 +1701,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-4 d-none d-lg-flex">
-                                            <h1 class="h5">Ввімкн.</h1>
+                                            <h1 class="h5">${settings.screenLight}</h1>
                                         </div>
                                     </div>
 
@@ -1707,10 +1712,10 @@
                                             <h1 class="h5 d-lg-none d-flex">ABC</h1>
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12 w-100">
-                                            <input class="form-control" type="text" name="ssid" placeholder="SSID">
+                                            <input class="form-control" type="text" name="ssid" placeholder="SSID" value="${settings.wifiSSID}">
                                         </div>
                                         <div class="col-lg-4 d-none d-lg-flex">
-                                            <h1 class="h5">ABC</h1>
+                                            <h1 class="h5">${settings.wifiSSID}</h1>
                                         </div>
                                     </div>
 
@@ -1721,7 +1726,7 @@
                                             <h1 class="h5 d-lg-none d-flex">**********</h1>
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-12 w-100">
-                                            <input class="form-control" type="password" name="pass" placeholder="***********">
+                                            <input class="form-control" type="password" name="pass" placeholder="***********" value="${settings.wifiPASS}">
                                         </div>
                                         <div class="col-lg-4 d-none d-lg-flex">
                                             <h1 class="h5">**********</h1>

@@ -2,6 +2,8 @@ package net.cyberdone.commutator.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.cyberdone.commutator.model.converter.ProductProductDtoConverter;
+import net.cyberdone.commutator.model.dto.ProductDto;
 import net.cyberdone.commutator.model.entity.Product;
 import net.cyberdone.commutator.model.entity.User;
 import net.cyberdone.commutator.model.repository.ProductRepository;
@@ -26,11 +28,12 @@ public class ProductService {
         return new HashSet<>(productList);
     }
 
-
-    public Product getProduct(String UID) {
+    public ProductDto getProduct(String UID) {
         log.info("getting Product from database by UID {}", UID);
-        return productRepository.findProductByUID(UID)
+        Product product = productRepository.findProductByUID(UID)
                 .orElseThrow(EntityNotFoundException::new);
+        ProductProductDtoConverter productDtoConverter = new ProductProductDtoConverter();
+        return productDtoConverter.toDto(product);
     }
 
     public Product getProduct(Long id) {
@@ -38,7 +41,6 @@ public class ProductService {
         return productRepository.findProductById(id)
                 .orElseThrow(EntityNotFoundException::new);
     }
-
 
     public Product createProduct(Product product) {
         log.info("creating Product {} with UID = {}", product, product.getUID());
@@ -53,7 +55,6 @@ public class ProductService {
         log.info("updating Product in database with: {}", product);
         return productRepository.save(product);
     }
-
 
     public void deleteProduct(String UID) {
         log.info("deleting Product in database by UID {}", UID);

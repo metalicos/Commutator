@@ -51,9 +51,7 @@
                 <div class="card bg-dark-choco text-white">
                     <div class="card-body">
                         <img class="card-img-top mb-3"
-                             src="https://media.wired.com/photos/5f3c219786a7c014331d15fd/master/pass/
-                         Gear-PORTAL+_White_Forward-Facing-Inline-(1).jpg" alt="">
-
+                             src="data:image/jpeg;base64,${device.photo}" alt="">
                         <h5 class="font-weight-bold text-center bg-light-white text-dark-choco card-title py-2">${device.name}</h5>
 
                         <div class="text-muted d-sm-block d-xl-flex">
